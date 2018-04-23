@@ -1,1 +1,5 @@
 theme: jekyll-theme-hacker
+github: [metadata]
+title: "MosheF Dev Blog"
+description: "Spread the code"
+show_downloads: false
