@@ -2,7 +2,7 @@ theme: jekyll-theme-hacker
 github: [metadata]
 title: "MosheF Dev Blog"
 description: "Spread the Code"
-disqus: true
-disqus_url: 'moshfeu-github-io.disqus.com'
+disqus: 'moshfeu-github-io.disqus.com'
 show_downloads: false
 author: 'MosheF'
+add_this: '516a7ca844f07801'
