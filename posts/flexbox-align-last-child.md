@@ -5,6 +5,9 @@ permalink: /posts/flexbox-align-last-child/
 tags: ['css3', 'flexbox', 'how-to']
 ---
 
+<img src="/assets/images/posts/flexbox-align-last-child.jpeg" alt="how to flexbox align last child">
+Photo by Jens Johnsson from Pexels
+
 ## The problem ##
 When you come from `float` mechanism to `flexbox` you sometime ask yourself how to make `float: right` works with `flexbox`.
 
