@@ -6,3 +6,4 @@ disqus: 'moshfeu-github-io.disqus.com'
 show_downloads: false
 author: 'MosheF'
 add_this_share: '516a7ca844f07801'
+excerpt_separator: '<!--more-->'

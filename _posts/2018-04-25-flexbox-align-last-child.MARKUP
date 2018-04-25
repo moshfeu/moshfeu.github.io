@@ -9,8 +9,8 @@ tags: ['css3', 'flexbox', 'how-to']
 Photo by Jens Johnsson from Pexels
 
 ## The problem ##
-When you come from `float` mechanism to `flexbox` you sometime ask yourself how to make `float: right` works with `flexbox`.
-
+When you come from `float` mechanism to `flexbox` you are sometime asking yourself how to make `float: right` like works with `flexbox`. (e.g. align the last child to the the opposite side)
+<!--more-->
 ## The solution ##
 When we want that the last child will align to the right it's like we say we want the first child will take all the place except the last-child place.
 To do this we can use `flex-grow`. By set `flex-grow: 1` to the first child we are telling the browser exactly this.
