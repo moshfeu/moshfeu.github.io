@@ -13,8 +13,10 @@
 
   <header>
     <div class="container">
-      <a class="logo" href="/"><h1>{{ site.title | default: site.github.repository_name }}</h1></a>
-      <h2>{{ site.description | default: site.github.project_tagline }}</h2>
+      <div class="logo-wrapper">
+        <a class="logo" href="/"><img src="/assets/images/logo-transparent.png" alt="logo"></a>
+        <h2>./{{ site.description | default: site.github.project_tagline }} <span class="shout">📢</span></h2>
+    </div>
 
       <section id="downloads">
         {% if site.show_downloads %}
