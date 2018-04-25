@@ -1,6 +1,8 @@
 ---
+layout: post
 title: \[How To\] Align last child to right flexbox
 permalink: /posts/flexbox-align-last-child/
+tags: ['css3', 'flexbox', 'how-to']
 ---
 
 ## The problem ##
