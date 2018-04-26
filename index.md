@@ -1,4 +1,5 @@
 {% for post in site.posts %}
+<div class="post{% if forloop.last %} last{% endif %}">
   <h3>
     <a href="{{post.url}}">
       {{post.title}}
@@ -9,4 +10,5 @@
   <a href="{{post.url}}">
     Read more
   </a>
+</div>
 {% endfor %}
