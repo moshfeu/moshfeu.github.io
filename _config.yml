@@ -8,3 +8,5 @@ author: 'MosheF'
 add_this_share: '516a7ca844f07801'
 excerpt_separator: '<!--more-->'
 google_analytics: 'UA-118358576-1'
+plugins:
+  - jekyll-sitemap
