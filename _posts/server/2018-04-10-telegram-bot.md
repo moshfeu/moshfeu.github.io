@@ -3,10 +3,9 @@ layout: post
 title: \[How To\] Develop a Telegram chat-bot
 permalink: /posts/telegram-chatbot/
 tags: ['nodejs', 'telegram', 'bot', 'chat-bot']
+image: '/assets/images/posts/telegram-bot.jpeg'
+credit: 'Photo by Roman Pohorecki from Pexels'
 ---
-
-<img src="/assets/images/posts/telegram-bot.jpeg" alt="telegram-bot" />
-Photo by Roman Pohorecki from Pexels
 
 Chatbots are basically tools which allow to a server to "join" to a chat conversation - "listen" and "post" messages.<br />
 Once the bot (the server, remember?) has the information and the content of the messages he can do a lot of things with at. Such as:

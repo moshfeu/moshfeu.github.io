@@ -3,9 +3,9 @@ layout: post
 title: Make links work inside SVG
 permalink: /posts/links-inside-svg/
 tags: ['css3', 'svg', 'link']
+image: '/assets/images/posts/links-inside-svg.jpg'
 ---
 
-<img src="/assets/images/posts/links-inside-svg.jpg" alt="Make links work inside SVG" />
 
 First of all, we can add links to a SVG file! Did you know? Well, I didn't. It's like the old good image map (`<map />` tag, remember? If you don't know this tag,   probably you are not yet 20 years old) but with SVG, so it's pretty cool.
 

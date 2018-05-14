@@ -6,6 +6,7 @@
     </a>
   </h3>
   <div class="tags">/*{{post.tags | join: ', '}}*/</div>
+  {% include featured-image.html page=post %}
   {{post.excerpt}}
   <a href="{{post.url}}">
     Read more

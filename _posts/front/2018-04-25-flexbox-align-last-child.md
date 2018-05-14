@@ -3,10 +3,9 @@ layout: post
 title: \[How To\] Align last child to right flexbox
 permalink: /posts/flexbox-align-last-child/
 tags: ['css3', 'flexbox', 'how-to']
+image: '/assets/images/posts/flexbox-align-last-child.jpeg'
+credit: 'Photo by Jens Johnsson from Pexels'
 ---
-
-<img src="/assets/images/posts/flexbox-align-last-child.jpeg" alt="how to flexbox align last child" />
-Photo by Jens Johnsson from Pexels
 
 ## The problem ##
 When you come from `float` mechanism to `flexbox` you are sometime asking yourself how to make `float: right` like works with `flexbox`. (e.g. align the last child to the opposite side)

@@ -1,0 +1,10 @@
+{% assign title =  include.page.title %}
+{% assign image =  include.page.image %}
+{% assign credit =  include.page.credit %}
+
+{% if page.image or include.page %}
+<p class="featured-image">
+  <img src="{{page.image | default: image}}" alt="{{page.title | default: title}}" />
+  <div class="credit">{{page.credit | default: credit}}</div>
+</p>
+{% endif %}
