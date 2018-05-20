@@ -43,7 +43,7 @@
 
   <footer>
     <div class="container">
-      {% if site.disqus %}
+      {% if site.disqus and page.url != "/" %}
       <div class="comments">
         <div id="disqus_thread"></div>
         <script>
@@ -59,7 +59,7 @@
           (function () { // DON'T EDIT BELOW THIS LINE
             var d = document,
               s = d.createElement('script');
-            s.src = 'https://{{site.disqus_url}}/embed.js';
+            s.src = 'https://{{site.disqus}}/embed.js';
             s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
           })();
