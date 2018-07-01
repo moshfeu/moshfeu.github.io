@@ -1,0 +1,48 @@
+---
+layout: post
+title: \[How to]\ use parent selector and with class
+permalink: /posts/parent-selector-with-class-scss/
+tags: ['scss', 'selector', 'parent']
+image: '/assets/images/posts/parent-selector-with-class-scss.jpg'
+credit: 'Photo by Flo Maderebner from Pexels'
+---
+
+## The problem ##
+
+You have child div (`.child`) which can be in both "parents" (`.parent-a` and `.parent-b`).
+You want to define a rule to each case. Well, this is not a problem - `&` selector, right?
+
+Let's remember:
+<!--more-->
+
+<iframe height='265' scrolling='no' title='Use & selector scss' src='//codepen.io/moshfeu/embed/bKzWKm/?height=265&theme-id=0&default-tab=css,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/moshfeu/pen/bKzWKm/'>Use & selector scss</a> by Mosh (<a href='https://codepen.io/moshfeu'>@moshfeu</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+Things are getting be interesting when you want to create a rule for parent (`.parent-a`) which have another class (`.-make-child-orange`) and will affect the child (`.child`).
+
+The structure looks like this:
+
+<iframe height='300' scrolling='no' title='Cant make children purple' src='//codepen.io/moshfeu/embed/WyPjBW/?height=265&theme-id=0&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/moshfeu/pen/WyPjBW/'>Can't make children purple</a> by Mosh (<a href='https://codepen.io/moshfeu'>@moshfeu</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+The closest selector I could think of is `.-make-child-orange &` but the problem is that it's become to a grandfather selector: `.-make-child-orange .parent-a .child`
+
+<script src="https://gist.github.com/moshfeu/3d6b80241a08279da06d544a3c807482.js"></script>
+
+## The solution ##
+
+`@at-root` and `#{}` (`Interpolation`) to the rescue you!
+
+> The @at-root directive causes one or more rules to be emitted at the root of the document, rather than being nested beneath their parent selectors. It can either be used with a single inline selector
+
+<a href="https://sass-lang.com/documentation/file.SASS_REFERENCE.html#at-root" target="_blank">docs</a>
+
+> You can also use SassScript variables in selectors and property names using #{} interpolation syntax
+
+<a href="https://sass-lang.com/documentation/file.SASS_REFERENCE.html#interpolation_" target="_blank">docs</a>
+
+So, combine those options togather and we will use the magic selector: `@at-root .-make-child-orange#{&}` so the `#{&}` will be replaced by
+the selector which aggregated so far:
+
+<p data-height="300" data-theme-id="0" data-slug-hash="WyPjBW" data-default-tab="html,result" data-user="moshfeu" data-embed-version="2" data-pen-title="Can't make children purple" class="codepen">See the Pen <a href="https://codepen.io/moshfeu/pen/WyPjBW/">Can't make children purple</a> by Mosh (<a href="https://codepen.io/moshfeu">@moshfeu</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
