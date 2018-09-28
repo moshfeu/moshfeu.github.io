@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+<h1>`{{ page.title }}` posts</h1>
+
+<div class="view">
+  {% for post in site.posts %}
+    {% if post.tags contains page.title %}
+      {% include post-item.html post=post last=forloop.last %}
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% include featured-image.html %}
+
+{{content}}

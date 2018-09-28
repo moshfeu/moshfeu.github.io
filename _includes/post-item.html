@@ -1,0 +1,15 @@
+{% assign post = include.post %}
+
+<div class="post">
+  <h3>
+    <a href="{{post.url}}">
+      {{post.title}}
+    </a>
+  </h3>
+  {% include tags.html tags=post.tags %}
+  {% include featured-image.html page=post %}
+  {{post.excerpt}}
+  <a href="{{post.url}}">
+    Read more
+  </a>
+</div>

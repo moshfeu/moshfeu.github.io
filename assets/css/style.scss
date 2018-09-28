@@ -8,7 +8,19 @@ h1, h2, h3, h4, h5, h6 {
   margin: 20px 0;
 }
 
-.tags {
+.main-container {
+  display: flex;
+}
+
+.site-tags {
+  padding-left: 30px;
+
+  a {
+    white-space: nowrap;
+  }
+}
+
+.tags a {
   color: $comment-color;
 }
 
@@ -23,7 +35,7 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
 }
 
-.post:not(.last) {
+.post:not(.last):not(:last-child) {
   padding-bottom: 10px;
   margin-bottom: 10px;
   border-bottom: 1px dashed #b5e853;
