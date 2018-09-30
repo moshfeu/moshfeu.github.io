@@ -29,12 +29,18 @@ mkdir -p tags
 
 for tag in "${TAGS[@]}"
 do
-  echo "---\ntitle: ${tag}\nlayout: tag\npermalink: /tags/${tag}/\n---" > tags/${tag}.md;
+echo "---
+title: ${tag}
+description: \"Here are all the posts that related to ${tag}\"
+layout: tag
+permalink: /tags/${tag}/
+---" > tags/${tag}.md;
   echo "created: ${tag}";
 done
 
 echo 'done';
 
+git add -- ./tags
 # print array
 # printf '%s\n' "${TAGS[@]}"
 # exit 1;
