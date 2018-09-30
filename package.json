@@ -1,5 +1,10 @@
 {
   "scripts": {
-    "start": "bundle exec jekyll serve"
+    "start": "bundle exec jekyll serve",
+    "generate-tags": "sh precommit.sh"
+  },
+  "pre-commit": [ "generate-tags" ],
+  "devDependencies": {
+    "pre-commit": "^1.2.2"
   }
 }
