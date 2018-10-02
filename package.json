@@ -1,10 +1,12 @@
 {
   "scripts": {
     "start": "bundle exec jekyll serve",
-    "generate-tags": "sh precommit.sh"
+    "generate-tags": "sh node_modules/github-pages-tags/precommit.sh"
   },
-  "pre-commit": [ "generate-tags" ],
-  "devDependencies": {
-    "pre-commit": "^1.2.2"
+  "pre-commit": [
+    "generate-tags"
+  ],
+  "dependencies": {
+    "github-pages-tags": "^1.0.0"
   }
 }
