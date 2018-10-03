@@ -1,6 +1,6 @@
 ---
 layout: post
-title: position fix and pointer-event hacks
+title: Position fix and pointer-event hacks
 permalink: /posts/position-fix-and-pointer-event-hacks/
 tags: ['css', 'quick-tips', 'pointer-events', 'position-fixed']
 image: '/assets/images/posts/fixed-absolute-pointer-events.jpg'
