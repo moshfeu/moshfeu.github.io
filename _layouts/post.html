@@ -7,9 +7,7 @@ layout: default
 
 <p class="view">
   by {{ page.author | default: site.author }} {% if page.tags %}
-  <small class="tags">/*
-    <em>{{ page.tags | join: "</em>;
-    <em>" }}</em> */</small>
+    {% include tags.html tags=page.tags %}
   {% endif %}
 </p>
 
