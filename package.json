@@ -7,6 +7,6 @@
     "generate-tags"
   ],
   "dependencies": {
-    "github-pages-tags": "^1.0.0"
+    "github-pages-tags": "^1.0.1"
   }
 }
