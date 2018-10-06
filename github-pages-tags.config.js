@@ -1,4 +1,4 @@
 module.exports = {
-  title: '{{tag}}}',
+  title: '{{tag}}',
   description: 'Here are all the posts that related to {{tag}}'
 }
