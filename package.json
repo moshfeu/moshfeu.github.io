@@ -6,7 +6,7 @@
   "pre-commit": [
     "generate-tags"
   ],
-  "dependencies": {
-    "github-pages-tags": "^1.0.3"
+  "devDependencies": {
+    "github-pages-tags": "^1.1.1"
   }
 }
