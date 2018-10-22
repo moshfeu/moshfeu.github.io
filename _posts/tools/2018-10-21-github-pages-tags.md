@@ -1,0 +1,52 @@
+---
+layout: post
+title: \[Npm package\] GitHub Pages tags generator
+permalink: /posts/github-pages-tags/
+tags: ['npm', 'github-pages', 'jekyll', 'tags']
+image: '/assets/images/posts/github-pages-tags.jpeg'
+credit: 'Photo by rawpixel.com from Pexels'
+---
+
+### TL'DR
+Now, you can add tags to your github-pages based website which will link to a real tag page (not link with `#` to a very-long-all-tags-in-one-page page).
+
+See it alive 👉👉 (The `Tags` list in the right column)<br >
+You can get it too. Just run `npm i github-pages-tags`.
+
+### The long story
+<!--more-->
+If you didn't know already (which means that you not opened the devtools while you in this site, shame on you :)), this site is built on [GitHub Pages](https://pages.github.com/) which can use [Jekyll](https://jekyllrb.com/).
+
+Don't get me wrong, Jekyll is great, but.. as they say be themselves:
+
+> Transform your plain text into **static** websites and blogs.
+
+And the problem regards to tags is that tags are, well, dynamic. The list of the tags is concating each post tags into one (with the duplicate, fo course).
+
+The solution has 2 parts:
+
+1. Present the list itself.
+2. Create file for each tag which will contains all the post that have this tag.
+
+Jekyll solved for us the first part. You can easily iterate over all the tags and generate html for each of them, like this:
+
+<script src="https://gist.github.com/moshfeu/523eba7ab6be19b524accbbe1cf86f72.js"></script>
+
+The second part is more problematic because assuming the user clicks on a tag and now he in, let's say `{% raw %}http://amazing-blog.github.io/tags/my-great-tag{% endraw %}` we need to filter all the posts that have `my-great-tag` tag in their tags list which it's impossible because the site is static and can't calculate anything in runtime.
+
+### So, what's the solution?
+
+Just use my plugin :)
+
+<a href="https://www.npmjs.com/package/github-pages-tags" rel="nofollow"><img src="https://nodei.co/npm/github-pages-tags.png?downloads=true&amp;downloadRank=true&amp;stars=true" alt="https://nodei.co/npm/github-pages-tags.png?downloads=true&amp;downloadRank=true&amp;stars=true"></a>
+
+### The mechanism
+
+- On pre-commit (you have to commit to push your changes to GitHub) the script crwl on each `.md` file and fetch the tags from it.
+- It cleans the duplicates.
+- It generating a file for each tag by the following schema _tags/{%raw%}{{tag_name}}{%endraw%}.md
+- In this file it define all the meta props, including permalink.
+- The file uses the `tag` template, so you have to make sure you have one (maybe in the future, the plugin will create this file by itself)
+Example of how the `tag` template should looks like, you can find in the plugin's [readme](https://github.com/moshfeu/github-pages-tags/blob/master/README.md#step-2)
+
+Questions? Ideas? Feel free to [open an issue](https://github.com/moshfeu/github-pages-tags/issues/new) on GitHub
