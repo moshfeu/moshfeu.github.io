@@ -2,7 +2,7 @@
 layout: post
 title: \[Npm package\] GitHub Pages tags generator
 permalink: /posts/github-pages-tags/
-tags: ['npm', 'github-pages', 'jekyll', 'tags']
+tags: ['npm', 'github-pages', 'jekyll', 'tags', 'nodejs']
 image: '/assets/images/posts/github-pages-tags.jpeg'
 credit: 'Photo by rawpixel.com from Pexels'
 ---
@@ -47,6 +47,6 @@ Just use my plugin :)
 - It generating a file for each tag by the following schema _tags/{%raw%}{{tag_name}}{%endraw%}.md
 - In this file it define all the meta props, including permalink.
 - The file uses the `tag` template, so you have to make sure you have one (maybe in the future, the plugin will create this file by itself)
-Example of how the `tag` template should looks like, you can find in the plugin's [readme](https://github.com/moshfeu/github-pages-tags/blob/master/README.md#step-2)
+Example of how the `tag` template should looks like, you can find in the plugin's [readme](https://github.com/moshfeu/github-pages-tags/blob/master/README.md?utm_source=blog&utm_campaign=general#step-2)
 
 Questions? Ideas? Feel free to [open an issue](https://github.com/moshfeu/github-pages-tags/issues/new) on GitHub
