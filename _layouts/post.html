@@ -11,6 +11,8 @@ layout: default
   {% endif %}
 </p>
 
+{% if post.image %}
 {% include featured-image.html post=page %}
+{% endif %}
 
 {{content}}
