@@ -25,20 +25,20 @@ The solution has 3 steps of modifications the _webpack.config.js_ file:
 
 Add an entry:
 
-```js
+{% highlight js linenos %}
 entry: {
   // ...
   // add this to let webpack watch on the test files changes
   tests: './test/path-to-the-tests-entry.js'
 }
-```
+{% endhighlight %}
 
 ### Step 2
 
 To extend the functionality of webpack we can use a plugin. For our usage we can simply add it directly to the <a href="https://webpack.js.org/concepts/plugins/" target="_blank">plugins</a> section.
 The only method we should implement in our plugin is `apply`. In this method we will register to `afterCompile` hook so in each compile we will run our code.
 
-```js
+{% highlight js linenos %}
 plugins: [
   {
     // add a custom webpack plugin. For more info: https://webpack.js.org/concepts/plugins/
@@ -50,11 +50,11 @@ plugins: [
     }
   }
 ]
-```
+{% endhighlight %}
 
 ### Step 3
 
-Run `spawn('npm', ['test'], {stdio:'inherit'});`. I'm using `spawn` and `{stdio:'inherit'}` to keeps the original colors which the terminal should use. (Thanks for the answer: https://stackoverflow.com/a/20145153/863110
+Run `spawn('npm', ['test'], {stdio:'inherit'});`. I'm using `spawn` and `{stdio:'inherit'}` to keep the original colors which the terminal should use. (Thanks for the answer: https://stackoverflow.com/a/20145153/863110
 )
 
 And all togather:
