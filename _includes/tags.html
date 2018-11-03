@@ -3,7 +3,12 @@
 <div class="tags">
 /*
 {% for tag in tags %}
+  {% assign size = site.posts | where_exp: 'post', 'post.tags contains tag' | size %}
+  {% if size > 1 %}
   <a class="tag" href="/tags/{{tag}}">{{tag}}</a>,
+  {% else %}
+  <span>{{tag}},</span>
+  {% endif %}
 {% endfor %}
 */
 </div>
