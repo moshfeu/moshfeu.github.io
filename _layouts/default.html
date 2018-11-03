@@ -40,6 +40,7 @@
       {{ content }}
     </section>
     <div class="site-tags">
+      {% include subscribe.html %}
       <h2>Tags</h2>
       <ul>
         {% for tag in site.tags %}
@@ -51,6 +52,7 @@
 
   <footer>
     <div class="container">
+      {% include subscribe.html %}
       {% if site.disqus and page.url != "/" %}
       <div class="comments">
         <div id="disqus_thread"></div>
