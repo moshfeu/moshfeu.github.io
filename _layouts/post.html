@@ -2,17 +2,25 @@
 layout: default
 ---
 
-<small>{{ page.date | date: "%-d %B %Y" }}</small>
-<h1>{{ page.title }}</h1>
+<article itemscope itemtype="http://schema.org/BlogPosting">
+  <h1>{{ page.title }}</h1>
 
-<p class="view">
-  by {{ page.author | default: site.author }} {% if page.tags %}
+  <p class="view">
+    by <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <span class="p-author h-card" itemprop="name">{{ page.author | default: site.author }}</span>
+    </span>
+    at <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+      <small>{{ page.date | date: "%-d %B %Y" }}</small>
+    </time>
+    {% if page.tags %}
     {% include tags.html tags=page.tags %}
+    {% endif %}
+  </p>
+
+  {% if page.image %}
+  {% include featured-image.html post=page %}
   {% endif %}
-</p>
 
-{% if page.image %}
-{% include featured-image.html post=page %}
-{% endif %}
+  {{content}}
 
-{{content}}
+</article>
