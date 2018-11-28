@@ -17,7 +17,7 @@ You can get it too. Just run `npm i github-pages-tags`.
 <!--more-->
 If you didn't know already (which means that you not opened the devtools while you in this site, shame on you :)), this site is built on [GitHub Pages](https://pages.github.com/) which can use [Jekyll](https://jekyllrb.com/).
 
-Don't get me wrong, Jekyll is great, but.. as they say be themselves:
+Don't get me wrong, Jekyll is great, but.. as they say by themselves:
 
 > Transform your plain text into **static** websites and blogs.
 
