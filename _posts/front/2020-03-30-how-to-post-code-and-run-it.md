@@ -82,6 +82,8 @@ body .gist .pl-sr .pl-sre {
 
 Jekyll supply a tag called `highlight`. It can accept some parameters. What's language and show lines numbers. [More info](https://jekyllrb.com/docs/liquid/tags/#code-snippet-highlighting)
 
+<!-- more -->
+
 For example, this code
 
 <script src="https://gist.github.com/moshfeu/9389214552feb9eef823fa1b62e63773.js"></script>
