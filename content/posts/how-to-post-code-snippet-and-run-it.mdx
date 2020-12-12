@@ -1,9 +1,7 @@
 ---
-layout: post
 title: How to post code snippet and run it
-permalink: /posts/how-to-post-code-snippet-and-run-it/
-tags: ['jekyll', 'github-pages', 'quick-tips']
-data: 2020-03-30
+tags: ["jekyll", "github-pages", "quick-tips"]
+date: 2020-03-30
 ---
 
 <style>
@@ -79,6 +77,7 @@ body .gist .pl-sr .pl-sre {
 }
 </style>
 
+
 ## Highlight the code
 
 Jekyll supplys a tag called `highlight`. It can accept some parameters. What's language and show lines numbers. [More info](https://jekyllrb.com/docs/liquid/tags/#code-snippet-highlighting)
@@ -92,6 +91,7 @@ For example, this code
 Will render
 
 {% highlight html linenos %}
+
   <button>do alert</button>
   <script>
     document.querySelector('button').addEventListener('click', () => {
@@ -100,11 +100,13 @@ Will render
   </script>
 {% endhighlight %}
 
+
 ## Run it
 
 And the runnable part
 
 {% highlight html linenos %}
+
 <div>
   <button>do alert</button>
   <script>
@@ -114,6 +116,7 @@ And the runnable part
   </script>
 </div>
 {% endhighlight %}
+
 
 Will render
 
@@ -125,6 +128,7 @@ Will render
     })
   </script>
 </div>
+
 
 P.S. have you moticed that the first snippet is actually [a gits](https://gist.github.com/moshfeu/9389214552feb9eef823fa1b62e63773)? 😄
 Want to know how to customize a gits' theme? Check this great post: https://codersblock.com/blog/customizing-github-gists/
