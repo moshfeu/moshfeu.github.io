@@ -5,13 +5,15 @@
  */
 
 const darkBlue = `#007acc`
-const lightBlue = `#66E0FF`
 const blueGray = `#282c35`
 
 export default {
-    colors: {
-        text: blueGray,
-        primary: darkBlue,
-        heading: blueGray,
-    },
+  colors: {
+    text: blueGray,
+    primary: darkBlue,
+    heading: blueGray,
+  },
+  fonts: {
+    body: "Open Sans, Roboto, system-ui, sans-serif",
+  },
 }

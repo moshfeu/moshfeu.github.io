@@ -1,8 +1,8 @@
 ---
-title: \[How to\] Run tests after compile webpack
-tags: ["npm", "webpack", "tests"]
-image: "/assets/images/posts/run-tests-after-compile-webpack.jpg"
+title: How to run tests after compile webpack
+image: "../assets/images/posts/run-tests-after-compile-webpack.jpg"
 date: 2018-10-27
+tags: ["npm", "webpack", "tests"]
 ---
 
 ## The problem
@@ -23,38 +23,67 @@ The solution has 3 steps of modifications the _webpack.config.js_ file:
 
 Add an entry:
 
-{% highlight js linenos %}
+```js
 entry: {
-// ...
-// add this to let webpack watch on the test files changes
-tests: './test/path-to-the-tests-entry.js'
+  // ...
+  // add this to let webpack watch on the test files changes
+  tests: "./test/path-to-the-tests-entry.js"
 }
-{% endhighlight %}
+```
 
 ### Step 2
 
 To extend the functionality of webpack we can use a plugin. For our usage we can simply add it directly to the <a href="https://webpack.js.org/concepts/plugins/" target="_blank">plugins</a> section.
 The only method we should implement in our plugin is `apply`. In this method we will register to `afterCompile` hook so in each compile we will run our code.
 
-{% highlight js linenos %}
+```js
 plugins: [
-{
-// add a custom webpack plugin. For more info: https://webpack.js.org/concepts/plugins/
-apply: compiler => {
-// add a hook to run a callback after each compile
-compiler.hooks.afterCompile.tap('jest', compilation => {
-// in this part we will run the tests
-}
-}
-}
+  {
+    // add a custom webpack plugin. For more info: https://webpack.js.org/concepts/plugins/
+    apply: compiler => {
+      // add a hook to run a callback after each compile
+      compiler.hooks.afterCompile.tap('jest', compilation => {
+        // in this part we will run the tests
+      }
+    }
+  }
 ]
-{% endhighlight %}
+```
 
 ### Step 3
 
-Run `spawn('npm', ['test'], {stdio:'inherit'});`. I'm using `spawn` and `{stdio:'inherit'}` to keep the original colors which the terminal should use. (Thanks for the answer: https://stackoverflow.com/a/20145153/863110
-)
+Run
+
+```shell
+spawn('npm', ['test'], {stdio:'inherit'});
+```
+
+I'm using `spawn` and `{stdio:'inherit'}` to keep the original colors which the terminal should use. (Thanks for the answer: https://stackoverflow.com/a/20145153/863110)
 
 And all togather:
 
-<script src="https://gist.github.com/moshfeu/ea69b77854aa590459cfe339bd364e77.js"></script>
+```js
+const { spawn } = require("child_process")
+
+module.exports = {
+  entry: {
+    // ...
+    // add this to let webpack watch on the test files changes
+    tests: "./test/path-to-the-tests-entry.js",
+  },
+  // ..
+  plugins: [
+    {
+      // add a custom webpack plugin. For more info: https://webpack.js.org/concepts/plugins/
+      apply: compiler => {
+        // add a hook to run a callback after each compile
+        compiler.hooks.afterCompile.tap("jest", compilation => {
+          // run `npm test` using `spawn` to keep the format of the terminal just like you run it manually.
+          // for more info: https://stackoverflow.com/a/20145153/863110
+          spawn("npm", ["test"], { stdio: "inherit" })
+        })
+      },
+    },
+  ],
+}
+```
