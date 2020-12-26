@@ -1,18 +1,11 @@
 import React from "react"
-import { Styled } from "theme-ui"
-
-/**
- * Change the content to add your own bio
- */
 
 export default function Bio() {
   return (
     <>
-      This is where <Styled.a href="http://example.com/">your name</Styled.a>
-      {` `}
-      goes.
+      Moshe Feuchtwanger
       <br />
-      Or whatever, you make the rules.
+      Frontend developer <a href="https://www.wix.com/" rel="noreferrer" target="_blank">@Wix</a>, Staff / Mentor <a rel="noreferrer" href="https://codingcoach.io/" target="_blank">@CodingCoach</a>
     </>
   )
 }

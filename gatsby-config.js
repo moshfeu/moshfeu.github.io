@@ -1,8 +1,11 @@
 module.exports = {
   plugins: [
+    'gatsby-theme-blog',
     {
-      resolve: `gatsby-theme-blog`,
-      options: {},
+      resolve: 'gatsby-plugin-sass',
+      options: {
+        implementation: require('sass')
+      },
     },
     {
       resolve: `gatsby-plugin-google-fonts`,
