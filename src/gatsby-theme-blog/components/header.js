@@ -4,6 +4,9 @@ import GtbHeader from "gatsby-theme-blog/src/components/header"
 import logo from "../../../content/assets/avatar.png"
 
 export default function Header(props) {
+  if (!props.location) {
+    return <></>;
+  }
   return (
     <>
       <Helmet>
