@@ -10,17 +10,16 @@ import Header from "../gatsby-theme-blog/components/header"
 export default function NotFound({
   location,
   data: {
-    allBlogPost: { edges: posts },
+    allBlogPost: { nodes: posts },
   },
 }) {
-  console.log({ posts })
   return (
     <Layout>
       <Header location={location} title="MosheF Blog" />
       <h1>Page Not Found</h1>
       <p>Oops, we couldn't find this page!</p>
       <p>Here are the latest posts</p>
-      <PostList posts={posts.map(({ node }) => node)} />
+      <PostList posts={posts} />
       <Footer />
     </Layout>
   )
@@ -29,13 +28,11 @@ export default function NotFound({
 export const listQuery = graphql`
   query ListQuery {
     allBlogPost(limit: 3) {
-      edges {
-        node {
-          title
-          slug
-          excerpt
-          date(formatString: "MMMM Do, YYYY")
-        }
+      nodes {
+        title
+        slug
+        excerpt
+        date(formatString: "MMMM Do, YYYY")
       }
     }
   }

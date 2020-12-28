@@ -8,6 +8,7 @@ import PostTitle from "gatsby-theme-blog/src/components/post-title"
 import PostDate from "gatsby-theme-blog/src/components/post-date"
 import PostFooter from "gatsby-theme-blog/src/components/post-footer"
 import PostHero from "gatsby-theme-blog/src/components/post-hero"
+import Tags from '../../components/tags'
 
 const Post = ({
   data: {
@@ -38,6 +39,7 @@ const Post = ({
             <PostHero post={post} />
             <PostTitle>{post.title}</PostTitle>
             <PostDate>{post.date}</PostDate>
+            <Tags tags={post.tags} />
           </header>
           <section>
             <MDXRenderer>{post.body}</MDXRenderer>
