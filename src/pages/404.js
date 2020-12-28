@@ -11,11 +11,14 @@ export default function NotFound({
   location,
   data: {
     allBlogPost: { nodes: posts },
+    site: {
+      siteMetadata: { title },
+    },
   },
 }) {
   return (
     <Layout>
-      <Header location={location} title="MosheF Blog" />
+      <Header location={location} title={title} />
       <h1>Page Not Found</h1>
       <p>Oops, we couldn't find this page!</p>
       <p>Here are the latest posts</p>
@@ -33,6 +36,11 @@ export const listQuery = graphql`
         slug
         excerpt
         date(formatString: "MMMM Do, YYYY")
+      }
+    }
+    site {
+      siteMetadata {
+        title
       }
     }
   }

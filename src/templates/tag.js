@@ -9,15 +9,18 @@ const CategoryTemplate = ({
   location,
   pageContext,
   data: {
-    allMdxBlogPost: { nodes: posts },
+    allMdxBlogPost: { nodes: posts, totalCount },
+    site: {
+      siteMetadata: { title },
+    },
   },
 }) => {
   const { tag } = pageContext
   return (
-    <Layout location={location} title={`Posts in tag "${tag}"`}>
+    <Layout location={location} title={title}>
       <div className="tag-container">
         <SEO title={`Posts in tag "${tag}"`} />
-        <h1>Tag: {tag}</h1>
+        <h1>Tag: {tag} ({totalCount} post{totalCount > 1 ? 's' : ''})</h1>
         <PostList posts={posts} />
       </div>
     </Layout>
@@ -33,7 +36,12 @@ export const pageQuery = graphql`
         excerpt
         date(formatString: "MMMM DD, YYYY")
       }
-      totalCount
+      totalCount,
+    },
+    site {
+      siteMetadata {
+        title
+      }
     }
   }
 `
