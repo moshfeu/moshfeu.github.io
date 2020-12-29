@@ -17,8 +17,8 @@ module.exports = {
   ],
   // Customize your site metadata:
   siteMetadata: {
-    title: `MosheF Dev blog`,
-    author: `Mosh Feuchtwanger`,
+    title: `Moshe Feuchtwanger`,
+    author: `Moshe Feuchtwanger`,
     description: ``,
     social: [
       {
