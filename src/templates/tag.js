@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import Layout from "gatsby-theme-blog/src/components/layout"
+import Layout from "../gatsby-theme-blog/components/layout"
 import SEO from "gatsby-theme-blog/src/components/seo"
 import PostList from "gatsby-theme-blog/src/components/post-list"
 

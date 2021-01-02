@@ -2,7 +2,6 @@ import React from "react"
 import Helmet from "react-helmet"
 import { css, Styled } from "theme-ui"
 import { Link, useStaticQuery, graphql } from "gatsby"
-import Image from "gatsby-image"
 
 import logo from "../../../content/assets/avatar.png"
 import styles from "./header.module.scss"
@@ -58,7 +57,7 @@ const Avatar = () => {
   return (
     <img
       src={avatar.childImageSharp.fixed.src}
-      srcSet={avatar.childImageSharp.fixed.srcset}
+      srcSet={avatar.childImageSharp.fixed.srcSet}
       alt={author}
       css={css({
         mr: 2,

@@ -1,4 +1,20 @@
 .header {
+  background: linear-gradient(#53bde6, #cdfdff);
+
+  &::before {
+    --radius: 60px;
+    --size: calc(var(--radius) + 20px);
+
+    content: "";
+    display: block;
+    background: radial-gradient(var(--radius) circle at var(--radius) 15px, #ffe130 50%, transparent 100%);
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: var(--size);
+    width: var(--size);
+  }
+
   a {
     color: inherit;
     box-shadow: none;

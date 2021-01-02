@@ -2,9 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "gatsby-theme-blog/src/components/layout"
 import PostList from "gatsby-theme-blog/src/components/post-list"
-// import Bio from "gatsby-theme-blog/src/components/bio"
 import Footer from "gatsby-theme-blog/src/components/post-footer"
-// import Bio from "../gatsby-theme-blog/components/bio-content"
 import Header from "../gatsby-theme-blog/components/header"
 
 export default function NotFound({
