@@ -12,6 +12,7 @@ export default {
     text: blueGray,
     primary: darkBlue,
     heading: blueGray,
+    highlight: '#00ff00'
   },
   fonts: {
     body: "Open Sans, Roboto, system-ui, sans-serif",

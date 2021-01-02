@@ -3,6 +3,7 @@ import { css, Styled } from "theme-ui"
 import Header from "./header"
 import useBlogThemeConfig from "gatsby-theme-blog/src/hooks/configOptions";
 import Helmet from "react-helmet"
+import "../../styles/global.scss";
 import styles from "./layout.module.scss"
 
 const Layout = ({ children, ...props }) => {

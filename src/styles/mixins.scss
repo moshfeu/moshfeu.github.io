@@ -1,0 +1,17 @@
+@mixin darkMode {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+
+%text  {
+  &, a {
+    color: inherit;
+  }
+
+  @include darkMode() {
+    &, a {
+      color: #fffee9;
+    }
+  }
+}

@@ -1,5 +1,12 @@
+@import "../../styles/mixins.scss";
+
 .header {
-  background: linear-gradient(#53bde6, #cdfdff);
+  background: linear-gradient(var(--dark-sky), var(--light-sky));
+  transition: background .2s ease;
+
+  @include darkMode() {
+    color: #fffee9;
+  }
 
   &::before {
     --radius: 60px;
@@ -7,13 +14,15 @@
 
     content: "";
     display: block;
-    background: radial-gradient(var(--radius) circle at var(--radius) 15px, #ffe130 50%, transparent 100%);
+    background: radial-gradient(var(--radius) circle at var(--radius) 15px, var(--planet-color) 50%, transparent 100%);
     position: absolute;
     top: 0;
     right: 0;
     height: var(--size);
     width: var(--size);
+    transition: background .2s ease;
   }
+
 
   a {
     color: inherit;

@@ -1,3 +1,10 @@
+@import '../../styles/mixins';
+
 .content {
-  background: linear-gradient(var(--content-bg) 97%, #8ab807 99%, #563a2c 99%, #563a2c 100%);
+  background-color: var(--light-sky);
+  background: linear-gradient(var(--light-sky) 97%, #8ab807 99%, #563a2c 99%, #563a2c 100%);
+
+  @include darkMode() {
+    color: #fffee9;
+  }
 }

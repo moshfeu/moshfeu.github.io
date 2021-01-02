@@ -1,9 +1,23 @@
+@import "./mixins";
+
 :root {
-  // --content-bg: #80939340;
-  --content-bg: #cdfdff;
+  --dark-sky: #53bde6;
+  --light-sky: #cdfdff;
+  --planet-color: #ffe130;
+
+  @include darkMode {
+    --dark-sky: #000;
+    --light-sky: #122627;
+    --planet-color: #fff;
+  }
 }
 
 body {
   font-size: 18px;
   line-height: 1.5;
+  --theme-ui-colors-highlight: red;
+
+  @include darkMode {
+    color: #fff;
+  }
 }
