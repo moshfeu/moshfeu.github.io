@@ -1,5 +1,5 @@
 ---
-title: How to run multiple watch scripts in paraller
+title: How to run multiple watch scripts in parallel
 tags: ["npm"]
 image: "../assets/images/posts/run-multiple-watch-scripts-parallel.jpg"
 credit: Photo by <a target="_blank" href="https://unsplash.com/photos/ApjcYVl-h-o?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Bence ▲ Boros</a> on <a href="/search/photos/parallel-space?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
@@ -21,7 +21,7 @@ Using `|` will not help us either because it will watch only the **last** part.
 
 The solution is to use a package called <a href="https://github.com/mysticatea/npm-run-all" target="_blank">`npm-run-all`</a>. With this package we can run all the scripts in parallel and get all the outputs from all the scripts.
 
-In <a href="my case" target="_blank">https://github.com/moshfeu/y2mp3/blob/master/package.json#L16</a> I needed to run 3 watchers: `webpack`, `tsc`, and `electron` so the `package.json` scripts was:
+In https://github.com/moshfeu/y2mp3/blob/205c216dbaa6a4d9313d5a97828f2ce0b8aa39ed/package.json#L23 I needed to run 3 watchers: `webpack`, `tsc`, and `electron` so the `package.json` scripts was:
 
 ```json
 "scripts": {
@@ -49,4 +49,4 @@ And that's it. Working like a charm :)
 </a>
 
 
-Thanks for <a href="https://stackoverflow.com/users/1282571/ling" target="_blank">@Ling</a> for his answer: <a href="https://stackoverflow.com/a/39575186/863110" target="_blank">https://stackoverflow.com/a/39575186/863110</a>
+Thanks for <a href="https://stackoverflow.com/users/1282571/ling" target="_blank">@Ling</a> for his answer: https://stackoverflow.com/a/39575186/863110
