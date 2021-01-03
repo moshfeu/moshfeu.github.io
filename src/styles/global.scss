@@ -1,22 +1,22 @@
 @import "./mixins";
 
-:root {
+body {
   --dark-sky: #53bde6;
   --light-sky: #cdfdff;
   --planet-color: #ffe130;
+  --text-color: inherit;
+  --planet-emoji: "🕶️";
+
+  font-size: 18px;
+  line-height: 1.5;
 
   @include darkMode {
     --dark-sky: #000;
     --light-sky: #122627;
     --planet-color: #fff;
-  }
-}
+    --text-color: #fffee9;
+    --planet-emoji: "👀";
 
-body {
-  font-size: 18px;
-  line-height: 1.5;
-
-  @include darkMode {
     color: #fff;
   }
 }

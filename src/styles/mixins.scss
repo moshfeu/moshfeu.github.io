@@ -1,17 +1,17 @@
 @mixin darkMode {
+  $dark-mode-selector: "dark-mode";
+
   @media (prefers-color-scheme: dark) {
     @content;
   }
-}
 
-%text  {
-  &, a {
-    color: inherit;
-  }
-
-  @include darkMode() {
-    &, a {
-      color: #fffee9;
+  @if (#{&} == "body") {
+    &.dark-mode {
+      @content;
+    }
+  } @else {
+    body.dark-mode & {
+      @content;
     }
   }
 }

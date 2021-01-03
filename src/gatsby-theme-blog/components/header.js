@@ -6,9 +6,11 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 import logo from "../../../content/assets/avatar.png"
 import styles from "./header.module.scss"
 
-export default function Header({
-  title,
-}) {
+export default function Header({ title }) {
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode")
+  }
+
   return (
     <>
       <Helmet>
@@ -25,6 +27,13 @@ export default function Header({
         >
           <Title>{title}</Title>
         </div>
+        <button
+          aria-label="Toggle Dark Mode"
+          className={styles.toggleDark}
+          onClick={toggleDarkMode}
+        >
+          <span></span>
+        </button>
       </header>
     </>
   )
@@ -37,9 +46,7 @@ const Title = ({ children }) => (
       fontSize: 4,
     })}
   >
-    <Link
-      to={`/`}
-    >
+    <Link to={`/`}>
       <Avatar />
       {children}
     </Link>

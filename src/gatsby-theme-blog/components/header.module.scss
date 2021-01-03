@@ -1,28 +1,44 @@
 @import "../../styles/mixins.scss";
 
 .header {
+  --radius: 60px;
+  --dim: calc(var(--radius) * 2);
+  --position: -10px;
+
   background: linear-gradient(var(--dark-sky), var(--light-sky));
-  transition: background .2s ease;
+  transition: background 0.2s ease;
+  color: var(--text-color);
 
-  @include darkMode() {
-    color: #fffee9;
-  }
-
-  &::before {
-    --radius: 60px;
-    --size: calc(var(--radius) + 20px);
-
-    content: "";
-    display: block;
-    background: radial-gradient(var(--radius) circle at var(--radius) 15px, var(--planet-color) 50%, transparent 100%);
+  .toggle-dark {
+    background: radial-gradient(
+      var(--radius) circle at var(--radius) var(--radius),
+      var(--planet-color) 50%,
+      transparent 100%
+    );
     position: absolute;
     top: 0;
     right: 0;
-    height: var(--size);
-    width: var(--size);
-    transition: background .2s ease;
-  }
+    height: var(--dim);
+    width: var(--dim);
+    padding: 20px;
+    transition: background, color 0.2s ease;
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    font-size: 40px;
+    transform: rotateZ(30deg) translate(10px, -50px);
+    color: transparent;
 
+    &:hover,
+    &:focus {
+      color: #000;
+    }
+
+    span:before {
+      content: var(--planet-emoji);
+    }
+  }
 
   a {
     color: inherit;
