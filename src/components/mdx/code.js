@@ -3,7 +3,6 @@ import Highlight, { defaultProps } from "prism-react-renderer"
 import theme from "prism-react-renderer/themes/nightOwl"
 
 import Styles from "./code.module.scss"
-console.log(11111, Styles)
 
 const RE = /{([\d,-]+)}/
 

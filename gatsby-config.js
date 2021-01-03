@@ -22,9 +22,11 @@ module.exports = {
         display: "swap",
       },
     },
+    "gatsby-plugin-sitemap"
   ],
   // Customize your site metadata:
   siteMetadata: {
+    siteUrl: `https://moshfeu.github.io/`,
     title: `Moshe Feuchtwanger`,
     author: `Moshe Feuchtwanger`,
     description: ``,
