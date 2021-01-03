@@ -9,8 +9,8 @@ import PostDate from "gatsby-theme-blog/src/components/post-date"
 import PostHero from "gatsby-theme-blog/src/components/post-hero"
 
 import Layout from "./layout"
-import Link from '../../components/link'
 import Tags from "../../components/tags"
+import components from '../../components/mdx/components';
 
 const Post = ({
   data: {
@@ -46,9 +46,7 @@ const Post = ({
             </header>
             <section>
               <MDXProvider
-                components={{
-                  a: Link,
-                }}
+                components={components}
               >
                 <MDXRenderer>{post.body}</MDXRenderer>
               </MDXProvider>

@@ -1,10 +1,18 @@
 module.exports = {
   plugins: [
-    'gatsby-theme-blog',
     {
-      resolve: 'gatsby-plugin-sass',
+      resolve: "gatsby-theme-blog",
       options: {
-        implementation: require('sass')
+        mdxOtherwiseConfigured: true,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+    },
+    {
+      resolve: "gatsby-plugin-sass",
+      options: {
+        implementation: require("sass"),
       },
     },
     {
