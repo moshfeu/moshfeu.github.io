@@ -1,9 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Layout from "gatsby-theme-blog/src/components/layout"
+import Layout from "../gatsby-theme-blog/components/layout"
 import PostList from "gatsby-theme-blog/src/components/post-list"
-import Footer from "gatsby-theme-blog/src/components/post-footer"
-import Header from "../gatsby-theme-blog/components/header"
 
 export default function NotFound({
   location,
@@ -16,12 +14,10 @@ export default function NotFound({
 }) {
   return (
     <Layout>
-      <Header location={location} title={title} />
       <h1>Page Not Found</h1>
       <p>Oops, we couldn't find this page!</p>
       <p>Here are the latest posts</p>
       <PostList posts={posts} />
-      <Footer />
     </Layout>
   )
 }

@@ -1,10 +1,16 @@
 @import '../../styles/mixins';
 
-.content {
-  background-color: var(--light-sky);
-  background: linear-gradient(var(--light-sky) 97%, #8ab807 99%, #563a2c 99%, #563a2c 100%);
+.root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 
   @include darkMode() {
     color: #fffee9;
   }
+}
+
+.content {
+  flex: 1;
+  background: linear-gradient(var(--light-sky) 97%, #8ab807 99%, #563a2c 99%, #563a2c 100%);
 }

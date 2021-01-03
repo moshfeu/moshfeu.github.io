@@ -3,7 +3,6 @@ import React from "react"
 import SEO from "gatsby-theme-blog/src/components/seo"
 import PostList from "gatsby-theme-blog/src/components/post-list"
 import Layout from "../components/layout"
-import Footer from "../../components/footer"
 
 const Posts = ({ location, posts, siteTitle, socialLinks }) => (
   <>
@@ -13,7 +12,6 @@ const Posts = ({ location, posts, siteTitle, socialLinks }) => (
         <PostList posts={posts} />
       </main>
     </Layout>
-    <Footer />
   </>
 )
 

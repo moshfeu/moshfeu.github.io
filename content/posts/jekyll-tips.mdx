@@ -6,14 +6,13 @@ date: 2018-10-28
 
 - To present tag posts count use `tag[1].size`
 
-{% highlight js linenos %}
-{% raw %}
+```
 {% for tag in site.tags %}
 
   <li><a href="/path_to_tags/{{ tag[0] | slugify }}">{{ tag[0] }}</a> <{{tag[1].size}}></li>
 {% endfor %}
-{% endraw %}
-{% endhighlight %}
+```
+
 <hr />
 - To display a `ruby` code but prevent compiler from render it, use {% raw %}`{% raw %}`{% endraw %}
 
