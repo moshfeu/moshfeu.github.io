@@ -12,9 +12,7 @@ export default function Link({ children, href }) {
   return (
     <a
       href={href}
-      // Open the link in a new page
       target={onPage ? null : '_blank'}
-      // Add noopener and noreferrer for security reasons
       rel={onPage ? null : 'noopener noreferrer'}
     >
       {children}
