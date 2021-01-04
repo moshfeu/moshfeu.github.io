@@ -1,24 +1,22 @@
-@import "./mixins";
-
 body {
-  --dark-sky: #53bde6;
-  --light-sky: #cdfdff;
-  --planet-color: #ffe130;
-  --link-color: #007acc;
-  --text-color: inherit;
-  --planet-emoji: "🕶️";
-
   font-size: 18px;
   line-height: 1.5;
 
-  @include darkMode {
+  &:not(.dark-mode) {
+    --dark-sky: #53bde6;
+    --light-sky: #cdfdff;
+    --planet-color: #ffe130;
+    --link-color: #007acc;
+    --text-color: inherit;
+    --planet-emoji: "🕶️";
+  }
+
+  &.dark-mode {
     --dark-sky: #000;
     --light-sky: #122627;
     --planet-color: #fff;
     --link-color: #ffeb00;
     --text-color: #fffee9;
     --planet-emoji: "👀";
-
-    color: #fff;
   }
 }

@@ -12,7 +12,9 @@ export default function Header({ title }) {
     {
       event_category: "ui",
       event_label: "toggleDarkMode",
-      value: typeof document !== 'undefined' && document.body.classList.contains("dark-mode")
+      value:
+        typeof document !== "undefined" &&
+        document.body.classList.contains("dark-mode"),
     },
     () => {
       document.body.classList.toggle("dark-mode")
