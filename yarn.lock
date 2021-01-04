@@ -7526,6 +7526,14 @@ gatsby-plugin-google-fonts@^1.0.1:
   resolved "https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos/gatsby-plugin-google-fonts/-/gatsby-plugin-google-fonts-1.0.1.tgz#d71054f7bf207b9a8da227380369e18e6f4e0201"
   integrity sha1-1xBU978ge5qNoic4A2nhjm9OAgE=
 
+gatsby-plugin-google-gtag@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-gtag/-/gatsby-plugin-google-gtag-2.5.0.tgz#e6c8059dbf111da9e22671e1acce74eb24814420"
+  integrity sha512-Nr4J7bY4Y7DZ5mnFQXgxz+aCunkR0mkVWcH2pENLuAirT79K1cV/DMpByRMdvfsFJS1CXSXJUj9SAsAmC5Wvlw==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    minimatch "^3.0.4"
+
 gatsby-plugin-mdx@^1.2.28:
   version "1.2.40"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-mdx/-/gatsby-plugin-mdx-1.2.40.tgz#061e9857a513ae1234dcf943b6d0132b78e7b23a"

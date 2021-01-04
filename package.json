@@ -10,6 +10,7 @@
   "dependencies": {
     "gatsby": "^2.26.1",
     "gatsby-plugin-google-fonts": "^1.0.1",
+    "gatsby-plugin-google-gtag": "^2.5.0",
     "gatsby-plugin-mdx": "^1.7.1",
     "gatsby-plugin-sass": "^2.8.0",
     "gatsby-plugin-sitemap": "^2.9.0",

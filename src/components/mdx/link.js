@@ -1,21 +1,22 @@
 // Thanks to https://mdawar.dev/blog/mdx-open-links-in-new-page
-import React from 'react';
-import { Link as GatsbyLink } from 'gatsby';
+import React from "react"
+import { Link as GatsbyLink } from "gatsby"
+import { OutboundLink } from "gatsby-plugin-google-gtag"
 
 export default function Link({ children, href }) {
-  if (href.startsWith('/')) {
-    return <GatsbyLink to={href}>{children}</GatsbyLink>;
+  if (href.startsWith("/")) {
+    return <GatsbyLink to={href}>{children}</GatsbyLink>
   }
 
-  const onPage = href.startsWith('#');
+  const onPage = href.startsWith("#")
 
   return (
-    <a
+    <OutboundLink
       href={href}
-      target={onPage ? null : '_blank'}
-      rel={onPage ? null : 'noopener noreferrer'}
+      target={onPage ? null : "_blank"}
+      rel={onPage ? null : "noopener noreferrer"}
     >
       {children}
-    </a>
-  );
+    </OutboundLink>
+  )
 }

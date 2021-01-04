@@ -2,14 +2,22 @@ import React from "react"
 import Helmet from "react-helmet"
 import { css, Styled } from "theme-ui"
 import { Link, useStaticQuery, graphql } from "gatsby"
+import { useGAEvent } from "../../hooks/useGAEvent"
 
 import logo from "../../../content/assets/avatar.png"
 import styles from "./header.module.scss"
 
 export default function Header({ title }) {
-  function toggleDarkMode() {
-    document.body.classList.toggle("dark-mode")
-  }
+  const toggleDarkMode = useGAEvent(
+    {
+      event_category: "ui",
+      event_label: "toggleDarkMode",
+      value: typeof document !== 'undefined' && document.body.classList.contains("dark-mode")
+    },
+    () => {
+      document.body.classList.toggle("dark-mode")
+    }
+  )
 
   return (
     <>

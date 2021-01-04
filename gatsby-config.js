@@ -1,6 +1,14 @@
 module.exports = {
   plugins: [
     {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [
+          'UA-118358576-1'
+        ]
+      }
+    },
+    {
       resolve: "gatsby-theme-blog",
       options: {
         mdxOtherwiseConfigured: true,
