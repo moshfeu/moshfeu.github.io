@@ -3,10 +3,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingIds: [
-          'UA-118358576-1'
-        ]
-      }
+        trackingIds: ["UA-118358576-1"],
+      },
     },
     {
       resolve: "gatsby-theme-blog",
@@ -16,6 +14,17 @@ module.exports = {
     },
     {
       resolve: `gatsby-plugin-mdx`,
+      options: {
+        gatsbyRemarkPlugins: [
+          `gatsby-remark-copy-linked-files`,
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1200,
+            },
+          },
+        ],
+      },
     },
     {
       resolve: "gatsby-plugin-sass",
@@ -30,7 +39,8 @@ module.exports = {
         display: "swap",
       },
     },
-    "gatsby-plugin-sitemap"
+    "gatsby-plugin-sharp",
+    "gatsby-plugin-sitemap",
   ],
   // Customize your site metadata:
   siteMetadata: {
