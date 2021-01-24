@@ -21,10 +21,10 @@ const Post = ({
     site: {
       siteMetadata: { title },
     },
+    previous,
+    next,
   },
   location,
-  previous,
-  next,
 }) => {
   return (
     <>
@@ -78,7 +78,7 @@ export const query = graphql`
         }
       }
     }
-    mdx(slug: { eq: $slug }) {
+    mdx(frontmatter: { slug: { eq: $slug } }) {
       id
       excerpt
       body

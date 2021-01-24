@@ -7,7 +7,7 @@ const Container = Styled.div
 const Tags = ({ tags }) => {
   return (
     <Container>
-      {tags.map((tag, i) => (
+      {tags?.map((tag, i) => (
         <Link key={tag} to={`/tag/${tag}`}>
           <Badge ml={Math.min(i, 1)}>{tag}</Badge>
         </Link>
