@@ -3,6 +3,7 @@ import { preToCodeBlock } from "mdx-utils"
 
 import Link from './link';
 import Code from './code';
+import Em from './em';
 
 export default {
   a: Link,
@@ -14,4 +15,5 @@ export default {
       return <pre {...preProps} />
     }
   },
+  em: Em
 }

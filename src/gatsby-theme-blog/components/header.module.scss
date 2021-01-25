@@ -8,6 +8,8 @@
   background: linear-gradient(var(--dark-sky), var(--light-sky));
   transition: background 0.2s ease;
   color: var(--text-color);
+  overflow: hidden;
+  position: relative;
 
   .toggle-dark {
     background: radial-gradient(

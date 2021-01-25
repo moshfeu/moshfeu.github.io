@@ -13,6 +13,7 @@ function SEO({
   imageSource,
   imageAlt,
   canonical,
+  keywords,
 }) {
   const { site } = useStaticQuery(
     graphql`
@@ -64,6 +65,10 @@ function SEO({
       name: `twitter:description`,
       content: metaDescription,
     },
+    {
+      name: `keywords`,
+      content: keywords,
+    }
   ]
     .concat(
       imageSource
@@ -125,6 +130,7 @@ SEO.propTypes = {
   title: PropTypes.string.isRequired,
   imageSource: PropTypes.string,
   canonical: PropTypes.string,
+  keywords: PropTypes.string,
 }
 
 export default SEO

@@ -2,9 +2,14 @@ import React from "react"
 import Image from "gatsby-image"
 
 import PostHeroCaption from "./post-hero-caption"
+import { css } from "theme-ui"
 
 const PostHero = ({ post }) => (
-  <>
+  <div
+    css={css({
+      marginTop: 2,
+    })}
+  >
     {post?.frontmatter?.image?.childImageSharp && (
       <>
         <Image
@@ -17,7 +22,19 @@ const PostHero = ({ post }) => (
         />
       </>
     )}
-  </>
+    {post?.frontmatter?.subtitle && (
+      <em
+        css={css({
+          textAlign: "center",
+          display: "block",
+          fontSize: "0.9rem",
+          paddingBlock: 1,
+        })}
+      >
+        {post.frontmatter.subtitle}
+      </em>
+    )}
+  </div>
 )
 
 export default PostHero

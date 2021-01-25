@@ -39,15 +39,16 @@ const Post = ({
           }
           imageAlt={post.imageAlt}
           canonical={post.frontmatter.canonical}
+          keywords={post.frontmatter.keywords}
         />
         <main>
           <article>
             <header>
-              <PostHero post={post} />
               <PostTitle>{post.frontmatter.title}</PostTitle>
               <PostDate>{post.frontmatter.date}</PostDate>
               <Tags tags={post.frontmatter.tags} />
             </header>
+            <PostHero post={post} />
             <section>
               <MDXProvider components={components}>
                 <MDXRenderer>{post.body}</MDXRenderer>
@@ -86,6 +87,8 @@ export const query = graphql`
       frontmatter {
         canonical
         title
+        subtitle
+        keywords
         tags
         date(formatString: "MMMM DD, YYYY")
         image {
