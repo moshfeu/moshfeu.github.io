@@ -16,6 +16,7 @@ const Layout = ({ children, previous, next, ...props }) => {
     <Styled.root className={styles.root}>
       <Helmet>
         <link rel="stylesheet" href={webfontURL} />
+        <meta name="google-site-verification" content="hpJ5hHMHz7pz5hEBUsKSCUaVIZg8rMKiQ86uyqVuFw4" />
       </Helmet>
       <Header {...props} />
       <div className={styles.content}>
