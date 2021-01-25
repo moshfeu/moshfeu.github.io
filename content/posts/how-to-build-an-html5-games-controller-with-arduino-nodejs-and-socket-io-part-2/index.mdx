@@ -1,0 +1,272 @@
+---
+slug: how-to-build-an-html5-games-controller-with-arduino-nodejs-and-socket-io-part-2
+date: 2020-04-25T02:23:42.982Z
+author: "Mosh Feu"
+title: "How to build an HTML5 game’s controller with Arduino, NodeJS and socket.io — Part 2"
+images:
+  - 1gGU1WZtUfIo8JxEZxgXrKQ.jpeg
+  - 1gGU1WZtUfIo8JxEZxgXrKQ.jpeg
+  - 1CzeVM2RtOl7-8J0I_DQg-g.gif
+tags:
+  - html5
+  - html5-games
+  - socketio
+keywords:
+  - html5
+  - html5-games
+  - socketio
+canonical: https://moshfeu.medium.com/how-to-build-an-html5-games-controller-with-arduino-nodejs-and-socket-io-part-2-bbd01bf36481
+---
+
+In the previous post I talked about the purpose of the project (Make an HTML5 game controlled by “external controller”), the final product (An Arduino controller) and showed the first step (“control it from a different browser window using the same keyboard keys”)
+If you’re interested in the server code, you should check it because we’re basically done with it. (Maybe we’ll add a bit server code in this post but it will relay on the existing mechanizm)"
+
+In this post, we gonna talk about the second step — “control it from a mobile phone on the same network of course.”
+
+To make things more interesting, I wanted to make the controller more “real” — means not just regular buttons for moving right and left but using a virtual “joystick”.
+
+![Image by [Martinelle](https://pixabay.com/users/Martinelle-495565/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2905361) from [Pixabay](https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2905361) — joystick, but real](1gGU1WZtUfIo8JxEZxgXrKQ.jpeg)*Image by [Martinelle](https://pixabay.com/users/Martinelle-495565/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2905361) from [Pixabay](https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2905361) — joystick, but real*
+
+Like any developer (I hope) I don’t like to write a code if I have the option no to (It’s a paradox, I know). So I found a great library for a virtual joystick with very advanced features — [nippleJS](https://yoannmoi.net/nipplejs/).
+
+For my purpose, I don’t need all those advanced features but only need to know if the user want to move right or left. The fire button will be a different button with a similar look and feel.
+
+The initialization code is
+
+```js
+var options = {
+    zone: document.querySelector('.zone'),
+    mode: 'static',
+    position: {left: '50%', top: '50%'},
+    color: 'red',
+    lockX: true,
+};
+const manager = nipplejs.create(options);
+```
+
+
+* `zone` — the DOM element which the joystick will rendered in
+
+* `mode: ‘static'` — otherwise the joystick will showed where the user will touch on the screen. I want it to be static for simplicity experience
+
+* `position` — basically center
+
+* `color` — duh
+
+* `lockX: true` — I need only to allow only right to left — x-axisץ
+
+The result
+<iframe src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fcodepen.io%2Fmoshfeu%2Fembed%2Fpreview%2FKKdWxON%3Fheight%3D600%26slug-hash%3DKKdWxON%26default-tabs%3Djs%2Cresult%26host%3Dhttps%3A%2F%2Fcodepen.io&display_name=CodePen&url=https%3A%2F%2Fcodepen.io%2Fmoshfeu%2Ffull%2FKKdWxON&image=https%3A%2F%2Fscreenshot.codepen.io%2F102536.KKdWxON.small.5c130d83-7916-4e09-a03b-caad1727ee4c.png&key=a19fcc184b9711e1b4764040d3dc5c07&type=text%2Fhtml&schema=codepen" width="100%" height="600" />
+
+Now, I need to trigger the key handlers in the game host through the socket. (Seriously, if you haven’t read the first post, now is a good time)
+
+```js
+const KEY_CODES = { left: 37, right: 39, fire: 32 };
+let lastDirection;
+
+function emit(type, keyCode) {
+  socket.emit('event', {type, keyCode})
+}
+
+manager.on('dir end', (_, info) => {
+  // user ended the interaction or change the direction
+  if (!info.direction || info.direction.x !== lastDirection) {
+    emit('keyup', KEY_CODES[lastDirection]);
+  }
+  // "Optional chaining" is so cool (unless you read it in after 2022, so it's obvious now)
+  lastDirection = info.direction?.x;
+  if (lastDirection) {
+    emit('keydown', KEY_CODES[lastDirection]);
+  }
+});
+```
+
+
+I need to store the `lastDirection` in case the user will push the stick to one side and **then** to other side **without** stop in order to trigger the first side `keyup`. Only then I can trigger the current side `keydown`.
+
+## The fire button
+
+The logic is similar — to `emit` the fire keys events on touches handlers
+
+```js
+const fireButton = document.querySelector('.fire');
+fireButton.addEventListener('touchstart', () => emit('keyup', KEY_CODES.fire));
+fireButton.addEventListener('touchend', () => emit('keydown', KEY_CODES.fire));
+```
+
+
+And because I want the fire button to has the same look and feel as the joystick:
+
+```css
+.fire {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+  border-radius: 100%;
+  border: 0;
+  background: none;
+  outline: 0;
+  transition: opacity .3s ease;
+}
+
+.fire:before,
+.fire:after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 50px;
+  background: red;
+  opacity: 0.5;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.fire:after {
+  width: 100%;
+  height: 100%;
+}
+
+.fire:active {
+  opacity: 1;
+}
+```
+
+
+## The server
+
+The last thing I need to do in order to allow both of the clients to communicate is to expose the server to the local network because currently it’s running only in my local machine (localhost).
+
+For that, I’m using a great library (and utility) — [serve-handler](https://github.com/zeit/serve-handler) “The foundation of [serve](https://www.npmjs.com/package/serve)”.
+
+```diff
++const handler = require('serve-handler');
+ const express = require('express');
+ const app = express();
+-const http = require('http').createServer(app);
++const http = require('http').createServer((request, response) => handler(request, response));
+```
+
+
+But what’s the URL of the game host? `localhost` is only working on the same machine.
+The address is the local network IP. To make it easier, the server will log the full address.
+
+```js
+http.listen(3000, () => {
+  console.log(`listening on ${getIPAddress()}:3000`);
+});
+
+function getIPAddress() {
+  const interfaces = require('os').networkInterfaces();
+  for (const devName in interfaces) {
+    const iface = interfaces[devName];
+
+for (let i = 0; i < iface.length; i++) {
+      const alias = iface[i];
+      if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal)
+        return alias.address;
+    }
+  }
+
+  return '0.0.0.0';
+}
+```
+
+
+Thanks to [https://stackoverflow.com/a/15075395/863110](https://stackoverflow.com/a/15075395/863110)
+
+When I reached that point, everything is working but.. not as expected. The problem is, when the user push the stick to the one side and then **start** to moving to the other side, the stick hasn’t reached the center so, technically, it’s still in the right. But the user **want** the mothership to go to the left. Although after a moment it will go to the left, the experience is not perfect.
+
+This joystick’s behaviour is makes sense when combining the direction with `force` and `distance`. When the gamer has the ability to control the **speed** of the character, those options come into account. In the case I described a moment ago, the character doesn’t need to go left in the first left movement but it should **slows down** the character. Only when the joystick reached the center the character should start moving left.
+
+I started to think to get rid of the lovely joystick. Maybe it’s too advanced for my needs.
+
+After few days, I ended up with a brand new [Web Component](https://www.npmjs.com/package/jjoystick) (which was an adventure on its own). But.. sadly, it’s not solves the problem entirely.
+
+I decided that it’s good enough. After all I want to focus on the Arduino part and less on the web “controller”.
+
+![Me, playing the game with my phone](1CzeVM2RtOl7-8J0I_DQg-g.gif)*Me, playing the game with my phone*
+
+Thank you for reading.
+As usual, comments and questions are very welcome.
+
+🐦[Tweet](https://twitter.com/moshfeu), 👨‍💼 [DM](https://www.linkedin.com/in/moshfeu/), 👨‍🔬 [Issue](https://github.com/moshfeu/AlienInvasion/issues) me.
+
+[Source code](https://github.com/moshfeu/AlienInvasion)
+
+The post is basically comes to its end. But if you want a basic explanation about the joystick, stay here.
+
+In few words, [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) is a very nice concept which allows to create pure vanila html elements. If you’re familiar with any of the common components libraries (such as React, Angular, Vue etc.) this concept should sounds very familiar (props, event, lifecycle).
+
+The element I made — jjoystick (**j**avascript **joystick** — joystick was taken in npm) built on top of `input[type=range]` . Left = 1, center = 2, right = 3. It’s nice because the functionality of moving the “stick” already implemented by the browser and using css, the style can be customized so it will look like.. well.. joystick.
+
+There are some parts when it comes to web components
+
+* Modify the DOM — add elements. In this case, the `input`.
+For example:
+
+```js
+const input = document.createElement('input');
+input.type = 'range';
+input.min = '0';
+input.max = '2';
+input.value = '1';
+wrapper.appendChild(input)
+this.shadowRoot.appendChild(wrapper);
+```
+
+
+* Style the elements — add `style` tag with the relevant css. The interesting part is that there is no need “namespace” the selectors because of the “[shadow DOM](https://css-tricks.com/styling-in-the-shadow-dom-with-css-shadow-parts/)”.
+For example:
+
+```js
+const style = document.createElement('style');
+style.textContent = `
+  /*css*/
+  .wrapper {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 0, 0, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /*!css*/
+`;
+this.shadowRoot.appendChild(style);
+```
+
+
+(You might wonder about the `/*css*/` annotations. It’s because `textContent` is a string but I like [syntax highlight](https://marketplace.visualstudio.com/items?itemName=iuyoy.highlight-string-code)).
+
+* Bind events — so the consumer could listen to it.
+For example:
+
+```js
+this.element.addEventListener('input', e => {
+  const {value} = e.target;
+  const side = this.states[value];
+  this.dispatchEvent(new CustomEvent('dir', {
+    detail: side
+  }));
+});
+```
+
+
+So the consumer can listen to `dir`
+
+```js
+joystick.addEventListener('dir', ({detail}) => console.log(detail) /* right, left */);
+```
+
+
+You’re more than welcome to check the [source code](https://github.com/moshfeu/jjoystick) or [npm](https://www.npmjs.com/package/jjoystick) it.
+
+This is the end of the post. For real 😁
