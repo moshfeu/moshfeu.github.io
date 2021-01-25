@@ -67,7 +67,7 @@ function SEO({
     },
     {
       name: `keywords`,
-      content: keywords,
+      content: keywords?.join(),
     }
   ]
     .concat(
@@ -130,7 +130,7 @@ SEO.propTypes = {
   title: PropTypes.string.isRequired,
   imageSource: PropTypes.string,
   canonical: PropTypes.string,
-  keywords: PropTypes.string,
+  keywords: PropTypes.arrayOf(PropTypes.string),
 }
 
 export default SEO
