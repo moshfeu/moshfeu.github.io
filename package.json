@@ -13,7 +13,6 @@
     "gatsby-plugin-google-gtag": "^2.5.0",
     "gatsby-plugin-mdx": "^1.7.1",
     "gatsby-plugin-sass": "^2.8.0",
-    "gatsby-plugin-sharp": "^2.13.1",
     "gatsby-plugin-sitemap": "^2.9.0",
     "gatsby-remark-copy-linked-files": "^2.9.0",
     "gatsby-remark-images": "^3.10.0",

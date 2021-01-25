@@ -39,7 +39,6 @@ module.exports = {
         display: "swap",
       },
     },
-    "gatsby-plugin-sharp",
     "gatsby-plugin-sitemap",
   ],
   // Customize your site metadata:
