@@ -1,5 +1,4 @@
 // @ts-check
-
 import React from "react"
 
 import { MDXProvider } from "@mdx-js/react"
@@ -14,6 +13,7 @@ import SEO from "../gatsby-theme-blog/components/seo"
 import Tags from "./tags"
 import components from "./mdx/components"
 import { graphql } from "gatsby"
+import Link from "./mdx/link"
 
 const Post = ({
   data: {
@@ -53,6 +53,9 @@ const Post = ({
               <MDXProvider components={components}>
                 <MDXRenderer>{post.body}</MDXRenderer>
               </MDXProvider>
+              {post.frontmatter.canonical && (
+                <Link href={post.frontmatter.canonical}>Original Post</Link>
+              )}
             </section>
           </article>
         </main>

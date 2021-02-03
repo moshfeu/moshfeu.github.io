@@ -10,17 +10,14 @@
 .content {
   flex: 1;
   background: linear-gradient(
-    var(--light-sky) 97%,
-    #8ab807 99%,
-    #563a2c 99%,
+    var(--light-sky) calc(100% - 60px),
+    #8ab807 calc(100% - 40px),
+    #563a2c calc(100% - 10px),
     #563a2c 100%
   );
+  padding-bottom: 30px;
 
   img {
     max-width: 100%;
-  }
-
-  a {
-    color: var(--link-color) !important;
   }
 }
