@@ -1,3 +1,4 @@
+// @ts-check
 import React from "react"
 import Helmet from "react-helmet"
 import { css, Styled } from "theme-ui"
@@ -6,6 +7,7 @@ import { useGAEvent } from "../../hooks/useGAEvent"
 
 import logo from "../../../content/assets/avatar.png"
 import styles from "./header.module.scss"
+import SocialNav from '../../components/social-nav'
 
 export default function Header({ title }) {
   const toggleDarkMode = useGAEvent(
@@ -13,8 +15,7 @@ export default function Header({ title }) {
       event_category: "ui",
       event_label: "toggleDarkMode",
       value:
-        typeof document !== "undefined" &&
-        document.body.classList.contains("dark-mode"),
+        document.body.classList.contains("dark-mode").toString(),
     },
     () => {
       document.body.classList.toggle("dark-mode")
@@ -33,9 +34,13 @@ export default function Header({ title }) {
             mx: `auto`,
             px: 3,
             py: 3,
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
           })}
         >
           <Title>{title}</Title>
+          <SocialNav />
         </div>
         <button
           aria-label="Toggle Dark Mode"
@@ -50,7 +55,7 @@ export default function Header({ title }) {
 }
 
 const Title = ({ children }) => (
-  <Styled.h1
+  <Styled.div
     css={css({
       my: 0,
       fontSize: 4,
@@ -60,7 +65,7 @@ const Title = ({ children }) => (
       <Avatar />
       {children}
     </Link>
-  </Styled.h1>
+  </Styled.div>
 )
 
 const Avatar = () => {

@@ -1,0 +1,13 @@
+.link {
+  margin: 0 5px;
+
+  svg {
+    width: 20px;
+
+    :global(body.dark-mode) & {
+      path {
+        fill: #fff;
+      }
+    }
+  }
+}

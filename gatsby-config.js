@@ -1,6 +1,14 @@
 module.exports = {
   plugins: [
     {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /social/
+        }
+      }
+    },
+    {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
         trackingIds: ["UA-118358576-1"],
@@ -55,6 +63,18 @@ module.exports = {
       {
         name: `github`,
         url: `https://github.com/moshfeu`,
+      },
+      {
+        name: `linkedin`,
+        url: `https://www.linkedin.com/in/moshfeu/`,
+      },
+      {
+        name: `stackoverflow`,
+        url: `https://stackoverflow.com/users/863110/mosh-feu`,
+      },
+      {
+        name: `visualstudiocode`,
+        url: `https://marketplace.visualstudio.com/publishers/moshfeu`,
       },
     ],
   },
