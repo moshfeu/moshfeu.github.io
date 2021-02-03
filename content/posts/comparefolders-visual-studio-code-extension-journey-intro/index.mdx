@@ -1,0 +1,59 @@
+---
+slug: comparefolders-visual-studio-code-extension-journey-intro
+date: 2019-09-12T06:15:36.710Z
+author: "Mosh Feu"
+title: "CompareFolders Visual Studio Code extension journey — Intro"
+image: 1qZSZkynXPE_QMtb_iS4xLQ.jpeg
+images:
+  - 1qZSZkynXPE_QMtb_iS4xLQ.jpeg
+tags:
+  - vscode
+  - vscode-extension
+  - how-to
+  - open-source
+keywords:
+  - vscode
+  - vscode-extension
+  - how-to
+  - open-source
+canonical: https://moshfeu.medium.com/comparefolders-visual-studio-code-extension-journey-intro-b540a0539629
+---
+
+This post meant to introduce the journey of the Visual Studio Code (“vscode”) plugin **CompareFolders**. The post is (will be) part of a series (🤞) and the only one who will not include any code examples and technical stuff.
+
+## What’s that plugin (should) does anyway
+
+With that plugin you can compare 2 folders’ content just like you do with **git** by comparing a `branch` code to `master` .
+As much as it’s a trivial need and there are a lot of tools out there, vscode has none.
+
+**How it’s gonna work?**
+
+There will be a dedicated panel for this in the view panel (in the left side of the app, at the same place the the files explorer). In that panel, the user could choose a folder anywhere in the file system. Once the other folder selected, the extension will compare the content of the folders and display a tree view of the files with the difference.
+Click on a file, will open a diff view, side by side and (hopefully) the user will be able to take or leave changes just like in **git** merge.
+
+## The motivations
+
+First, it will be a great plugin.
+
+Second, I’m using vscode intensively and I like to know it better. I already tried to develop a [tiny extension](https://marketplace.visualstudio.com/items?itemName=moshfeu.auto-npm-install) before but now I want to use more advanced API capabilities to enrich that plugin and make it ready for real use.
+
+Vscode API’s docs are basically good but I feel that many times it lacks a context. To cover on that, there is a great [demos repository](https://github.com/microsoft/vscode-extension-samples) but with that, you need to do “reverse engineering”. They’re basically saying: “here is the code, try to understand how we did it”.
+I must to say, it’s not trivial, for me at least. If it was a simple flatted library (such lodash), code snippets will do the job. But, in vscode extension it’s different. In order to present a view, you need to do a bunch of things that in different places in the code base so you not always know where to look.
+So, the third motivation is to show how to implement different functionalities in an extension.
+
+The posts in the series will be divided so each post will deal with a different aspect, api method or flow so it can be read without context and will not require to read the full series (although it could help 😀)
+The posts written in at the same time as the extension so the progress will be in accordance so the topics. So a post’s aspect might be not includes in the extension in the end but I needed that technique or aspect to move forward and it worth to mentioned.
+
+Also, each post will start with what the challenge that need to solved and will show with explanations and code how to solve it.
+
+And finally, I’ll update the posts with new information that will come up along the road.
+
+## Open Source
+
+Obviously, all the code is open source
+
+## What the posts will not include?
+
+The presupposition is that you already familiar a bit with vscode extension development so the posts will not cover explanations about “what is the extension”?, “how to start”? “What is TypeScript”? and so on. For that, the [docs](https://code.visualstudio.com/api) are pretty good.
+
+Have something to say? I’ll love to 👂

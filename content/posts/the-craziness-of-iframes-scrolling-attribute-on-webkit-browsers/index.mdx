@@ -1,0 +1,57 @@
+---
+slug: the-craziness-of-iframes-scrolling-attribute-on-webkit-browsers
+date: 2019-01-23T10:06:31.043Z
+author: "Mosh Feu"
+title: "The craziness of iframe’s “Scrolling” attribute on Webkit browsers"
+subtitle: "Photo by Paolo Nicolello on Unsplash"
+image: 0n_aGcxhZqHquilpY.jpg
+images:
+  - 0n_aGcxhZqHquilpY.jpg
+tags:
+  - web-development
+  - iframe
+  - scrolling
+  - webkit
+  - html
+keywords:
+  - web-development
+  - iframe
+  - scrolling
+  - webkit
+  - html
+canonical: https://moshfeu.medium.com/the-craziness-of-iframes-scrolling-attribute-on-webkit-browsers-1b2b841bceaf
+---
+
+`iframe` it sucks, let’s put it behind us.
+
+Sometimes, just sometimes, we (not you, of course) have to use it.
+Why? Maybe to show an older part (ASP.Net) in your app inside a newer (React 16.* / node.js) part. Maybe because of bad architecture. You name it, it exists and it’s a fact.
+
+If you familiar with `iframe` you probably familiar with its attribute `scrolling` . In short, [Indicates when the browser should provide a scrollbar for the frame](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-scrolling).
+
+Wait, are we still using `scrolling` ? Isn’t html5 “[Obsolete](https://www.sitepoint.com/5-obsolete-features-html5/)”?!
+Well, it does, but sadly there are, still, some browsers, yes even Chrome, that count on “scrolling” attribute and doesn’t count on `overflow: scroll / hidden`.
+
+Obviously, if you can set it hard coded, you can change it using script, right?
+<iframe src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fstackblitz.com%2Fedit%2Ftoggle-iframe-scrolling-js%3Fembed%3D1%26file%3Dindex.js%26view%3Deditor&url=https%3A%2F%2Fstackblitz.com%2Fedit%2Ftoggle-iframe-scrolling-js%3Fembed%3D1%26file%3Dindex.js%26view%3Deditor&image=https%3A%2F%2Fc.staticblitz.com%2Fassets%2Ficon-664493542621427cc8adae5e8f50d632f87aaa6ea1ce5b01e9a3d05b57940a9f.png&key=a19fcc184b9711e1b4764040d3dc5c07&type=text%2Fhtml&schema=stackblitz" width="100%" height="400" />
+
+Well, not in all cases. It depends on that initial definition. If it was “truthy” (attribute not exists or its value is `true`) the code will work.
+If it start with `no`, the code will not work. Don’t believe me?
+<iframe src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fstackblitz.com%2Fedit%2Ftoggle-iframe-scrolling-js-scrolling-no%3Fembed%3D1%26file%3Dindex.html&url=https%3A%2F%2Fstackblitz.com%2Fedit%2Ftoggle-iframe-scrolling-js-scrolling-no%3Fembed%3D1%26file%3Dindex.html&image=https%3A%2F%2Fc.staticblitz.com%2Fassets%2Ficon-664493542621427cc8adae5e8f50d632f87aaa6ea1ce5b01e9a3d05b57940a9f.png&key=a19fcc184b9711e1b4764040d3dc5c07&type=text%2Fhtml&schema=stackblitz" width="100%" height="400" />
+
+You could this that you can bypass this issue by hiding the scrollbar with css. Sorry, bad news for you, it will not work (I tested on Chrome 71 on mac [as you can see](https://stackoverflow.com/a/6375531/863110)).
+
+But what if you want to hide the scrollbar at the begging and then change it? Well, the answer is simple, hide it with script:
+<iframe src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fstackblitz.com%2Fedit%2Ftoggle-iframe-scrolling-by-css%3Fembed%3D1%26file%3Dindex.js%26hideExplorer%3D1%26view%3Deditor&url=https%3A%2F%2Fstackblitz.com%2Fedit%2Ftoggle-iframe-scrolling-by-css%3Fembed%3D1%26file%3Dindex.js%26hideExplorer%3D1%26view%3Deditor&image=https%3A%2F%2Fc.staticblitz.com%2Fassets%2Ficon-664493542621427cc8adae5e8f50d632f87aaa6ea1ce5b01e9a3d05b57940a9f.png&key=a19fcc184b9711e1b4764040d3dc5c07&type=text%2Fhtml&schema=stackblitz" width="100%" height="400" />
+
+Yes, you see *correctly*. There is `setTimeout` in the code. Why is that? well, apparently, if you change the attribute while the iframe is not fully loaded, it will not work. Because of my site is super fast (github-pages) it takes only 30ms to load. I tried another website and the timeout should be 1 second to work. CRAZINESS, right?
+
+## Conclusions
+
+* Avoid `iframe` if you can. It will save you some years in your life and some neurones in your brain.
+
+* If you really have to, try to avoid the need to change `scrolling` dynamically.
+
+* If you really have to (just like me), start with `scrolling="yes"`and hide with script.
+
+If it will ever been fixed, please let me know so I could unpublish this embarrassing post.

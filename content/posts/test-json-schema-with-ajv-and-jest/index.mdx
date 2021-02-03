@@ -1,0 +1,335 @@
+---
+slug: test-json-schema-with-ajv-and-jest
+date: 2019-03-20T08:48:26.732Z
+author: "Mosh Feu"
+title: "Test JSON schema with AJV  and Jest"
+subtitle: "Photo by Lacie Slezak on Unsplash"
+image: 08GPdwUfLz3vdVZqg.jpg
+images:
+  - 08GPdwUfLz3vdVZqg.jpg
+tags:
+  - javascript
+  - jest
+  - ajv
+  - json
+  - validation
+keywords:
+  - javascript
+  - jest
+  - ajv
+  - json
+  - validation
+canonical: https://moshfeu.medium.com/test-json-schema-with-ajv-and-jest-c1d2984234c9
+---
+
+While I worked on a project I was involved (Coding-Coach if you must know 😉) I faced with an interesting challenge.
+
+The project users “database” is actually a big JSON file which contains all the entries. (Why? this is for another post)
+
+This file has some restrictions to make sure the data will be consistency. For instance, “country” field which its value can be only from a list.
+
+Each user can add himself to that JSON file with PR, and [travis-ci](https://travis-ci.com) is running the test which should verify the schema (among other things).
+
+### So how can we sure the new member added himself with the right schema without review it in each PR?
+
+[AJV](https://github.com/epoberezkin/ajv) is “The fastest JSON Schema Validator”. I didn’t check how fast it is but I can tell that its API is nice, flexible, well documented (except 1 case. We will talk about it later) and I liked to work with it.
+
+## So, how we do this?
+
+TLD’R include the validation call in a `it` spec and fail the test if you get an error from the validation method.
+
+Let’s take their [example](https://ajv.js.org/#getting-started) as a base:
+
+```javascript
+var Ajv = require('ajv');
+var ajv = new Ajv();
+var validate = ajv.compile(schema);
+var valid = validate(data);
+if (!valid) console.log(validate.errors);
+```
+
+Let’s say, our schema should looks like:
+
+```json
+{
+  "fullname": "your full name"
+}
+```
+
+So the user will have a `fullname` field and let’s say has minimum of 2 characters, the validation code will be:
+
+```javascript
+import users from './users.json';
+
+const shema = {
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "fullname": {
+        "type": "string",
+        "minLength": 2
+      },
+    },
+  },
+};
+
+ajv.validate(shema, users);
+```
+*users.json*
+```json
+[
+  {
+    "fullname": "john doe"
+  }
+]
+```
+
+`ajv` object has `errors` property — Array with the errors so if the JSON will not meet the schema, the `errors` will be:
+
+```js
+[
+  {
+    keyword: 'minLength',
+    dataPath: '[0].fullname',
+    schemaPath: '#/items/properties/fullname/minLength',
+    params: { limit: 2 },
+    message: 'should NOT be shorter than 2 characters'
+  }
+]
+```
+
+
+## So far so good but it will not break our test.. Where is the test actually?
+
+It’s not so hard. We just “wrap” the validation call with `it`.
+
+```javascript
+it.only(`should user's schema be valid`, () => {
+  const schema = {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "fullname": {
+          "type": "string",
+          "minLength": 2
+        },
+      },
+    },
+  };
+
+  const valid = ajv.validate(shema, [
+    {
+      fullname: 'a'
+    }
+  ]);
+  expect(valid).toBeTruthy();
+});
+
+```
+
+In this case, the test will fail with the message:
+
+```bash
+● should user's schema be valid
+
+expect(received).toBeTruthy()
+
+Received: false
+```
+
+
+As you can see, I don’t know what’s wrong, I just know that the data’s schema is invalid, it’s not good enough. It will be better to show more meaningful message.
+
+As we saw earlier, we get the errors from ajv ( `ajv.errors` ) remember? So we can display it when the test is failing.
+
+In Jest (unlike other libraries), you can’t specify the error message. So, in order to display a meaningful error message, we will have to create a [custom matcher](https://jestjs.io/docs/en/expect#expectextendmatchers) to show our own message. We also, collect the field name and the index so we could know which one is the problematic and what field.
+
+```javascript
+expect.extend({
+  toBeValid(isValid, errorMessage) {
+    return {
+      message: () => isValid ? '' : errorMessage,
+      pass: isValid
+    }
+  }
+});
+
+it(`should user's schema be valid`, () => {
+  const shema = {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "fullname": {
+          "type": "string",
+          "minLength": 2
+        },
+      },
+    },
+  };
+
+  const valid = ajv.validate(shema, [
+    {
+      fullname: 'a'
+    }
+  ]);
+  try {
+      const [, index, fieldName] = /\[(.*)\].(.*)/.exec(error.dataPath);
+      return `error with item #${index}'s field "${fieldName}". The error is: ${error.message}`;
+    } catch (error) {
+      return error.message;
+    }
+  }).join('\n');
+  expect(valid).toBeValid(errorMessage);
+});
+
+```
+
+This one will show the error message we wanted:
+
+```bash
+● should user's schema be valid
+
+error with item #0's field "fullname". The error is: should NOT be shorter than 2 characters
+```
+
+
+The next field I wanted to validate is an avatar URL. It shouldn’t be a problem because with AJV we get a URL validation [out of the box](https://ajv.js.org/keywords.html#type) (Hint: by using `format: ‘uri'`).
+
+The problem is, our website is running on `https` schema so we wanted that all the resources will come from `https` either (to avoid [Mixed Content](https://developers.google.com/web/fundamentals/security/prevent-mixed-content/fixing-mixed-content) issue). URL with `http` is valid so how can we verify the the URL schema?
+
+AJV let us to define “Custom Keywords” — a custom function validation of top of the original function based on the `type` of the field.
+
+Here is how:
+
+```javascript
+const validateSecuredUrl = function (schema, uri) {
+  return uri.indexOf('https://') === 0;
+};
+
+ajv.addKeyword('securedUrl', {
+  validate: validateSecuredUrl,
+  errors: true
+});
+
+it(`should user's schema be valid`, () => {
+  const shema = {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "fullname": {
+          "type": "string",
+          "minLength": 2
+        },
+        "avatar": {
+          "type": "string",
+          "format": "uri",
+          "securedUrl": true,
+        },
+      },
+    },
+  };
+
+  const valid = ajv.validate(shema, [
+    {
+      fullname: 'ab',
+      avatar: "http://mywebsite.com/path/to/avatar"
+    }
+  ]);
+  const errorMessage = (ajv.errors || []).map(error => {
+    try {
+      const [, index, fieldName] = /\[(.*)\].(.*)/.exec(error.dataPath);
+      return `error with item #${index}'s field "${fieldName}". The error is: ${error.message}`;
+    } catch (error) {
+      return error.message;
+    }
+  }).join('\n');
+  expect(valid).toBeValid(errorMessage);
+});
+
+```
+
+And the output will be
+
+```bash
+● should user's schema be valid
+
+error with item #0's field "avatar". The error is: should pass "securedUrl" keyword validation
+```
+
+
+The only thing that left is to display what’s exactly `secureUrl` validation is.
+
+The docs does mention how to return a custom error message
+> The function should return validation result as boolean. It can return an array of validation errors via `.errors` property of itself (otherwise a standard error will be used).
+
+But I wasn’t sure how exactly to implement it (whoever thinks that it straightforward, well done 👏)
+> …well documented (except 1 case. We will talk about it later)
+
+Remember?
+
+So after diving into the repo in Github, I found the answer in an [issue](https://github.com/epoberezkin/ajv/issues/161) who asks exactly that.
+
+**So the full code will be**
+
+```javascript
+const validateSecuredUrl = function (schema, uri) {
+  validateSecuredUrl.errors = [{keyword: 'secured', message: 'avatar url must be "https" schema', params: {keyword: 'secured'}}];
+  return uri.indexOf('https://') === 0;
+};
+
+ajv.addKeyword('securedUrl', {
+  validate: validateSecuredUrl,
+  errors: true
+});
+
+it(`should user's schema be valid`, () => {
+  const shema = {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "fullname": {
+          "type": "string",
+          "minLength": 2
+        },
+        "avatar": {
+          "type": "string",
+          "format": "uri",
+          "securedUrl": true,
+        },
+      },
+    },
+  };
+
+  const valid = ajv.validate(shema, [
+    {
+      fullname: 'ab',
+      avatar: "http://mywebsite.com/path/to/avatar"
+    }
+  ]);
+  const errorMessage = (ajv.errors || []).map(error => {
+    try {
+      const [, index, fieldName] = /\[(.*)\].(.*)/.exec(error.dataPath);
+      return `error with item #${index}'s field "${fieldName}". The error is: ${error.message}`;
+    } catch (error) {
+      return error.message;
+    }
+  }).join('\n');
+  expect(valid).toBeValid(errorMessage);
+});
+```
+
+And the output will be
+
+```bash
+● should user's schema be valid
+
+error with item #0's field "avatar". The error is: avatar url must be "https" schema
+```
+
+
+And now the user could understand exactly what he / she needs to fix.
