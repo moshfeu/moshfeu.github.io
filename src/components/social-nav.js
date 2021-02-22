@@ -1,5 +1,5 @@
 // @ts-check
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import { BlankLink } from "./mdx/link"
 import Styles from "./social-nav.module.scss"
@@ -10,31 +10,32 @@ export default function SocialNav() {
       siteMetadata: { social },
     },
   } = useStaticQuery(siteQuery)
-  const [socials, setSocials] = useState(social)
+  const [socials, setSocials] = useState([])
   const [loaded, setLoaded] = useState(false)
 
-  useEffect(() => {
-    async function enrichSocial() {
-      const newSocials = await Promise.all(
-        socials.map(async link => {
-          if (!link?.name) {
-            return link
-          }
-          const { default: Icon } = await import(
-            `../../content/assets/social/${link.name}.svg`
-          )
+  const enrichSocial = useCallback(async () => {
+    const newSocials = await Promise.all(
+      social.map(async link => {
+        if (!link?.name) {
+          return link
+        }
+        const { default: Icon } = await import(
+          `../../content/assets/social/${link.name}.svg`
+        )
 
-          return {
-            ...link,
-            Icon,
-          }
-        })
-      )
-      setSocials(newSocials)
-      setLoaded(true)
-    }
-    enrichSocial()
-  }, [])
+        return {
+          ...link,
+          Icon,
+        }
+      })
+    )
+    setSocials(newSocials)
+    setLoaded(true)
+  }, [social]);
+
+  useEffect(() => {
+    enrichSocial();
+  }, [enrichSocial])
 
   if (!loaded) {
     return <></>
