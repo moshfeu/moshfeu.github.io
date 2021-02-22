@@ -1,0 +1,43 @@
+---
+title: "pointer-events: none" for children
+tags: ["css", "quick-tips", "pointer-events"]
+slug: fixed-absolute-pointer-events
+date: 2018-10-03
+---
+
+
+Sometimes you want to "disable" all the elements inside a certain element. So we can easly use [`pointer-events: none`](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events#Basic_example).
+
+## The problem
+
+What if you want to "disable" only some elements but not the others?
+
+## The solution
+
+You can, surprise surprise, "enable" them (by `pointer-events: auto`) even if its parent has `pointer-events: none`.
+
+Want a proof?
+
+<iframe
+  height="265"
+  scrolling="no"
+  title="pointer-event inside pointer-events"
+  src="//codepen.io/moshfeu/embed/PyZMYE/?height=265&theme-id=0&default-tab=html,result&embed-version=2"
+  frameborder="no"
+  allowtransparency="true"
+  allowfullscreen="true"
+  style="width: 100%;"
+>
+  See the Pen{" "}
+  <a href="https://codepen.io/moshfeu/pen/PyZMYE/">
+    pointer-event inside pointer-events
+  </a>{" "}
+  by Mosh (<a href="https://codepen.io/moshfeu">@moshfeu</a>) on{" "}
+  <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+You can click on the `button` and on the `select` but not on the `input` or on the `radio`
+
+<a href="https://stackoverflow.com/a/52611251/863110" target="_blank">
+  https://stackoverflow.com/a/52611251/863110
+</a>

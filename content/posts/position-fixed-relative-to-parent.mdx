@@ -1,18 +1,14 @@
 ---
-title: Position fix and pointer-event hacks
-tags: ["css", "quick-tips", "pointer-events", "position-fixed"]
-slug: fixed-absolute-pointer-events
+title: "position: fixed" relative to parent
+tags: ["css", "quick-tips", "position-fixed"]
+slug: position-fixed-relative-to-parent
 image: "../assets/images/posts/fixed-absolute-pointer-events.jpg"
 date: 2018-10-03
 ---
 
-In the this post I will show you 2 tricks I learned by answering a question on StackOverflow
+We all know that `position: fixed` is relatively to the `window`, right? Well, no. We can put it inside a `position: relative` element.
 
-# Trick 1
-
-We all now that `position: fixed` is relatively to the `window`, right? Well, no. We can put it inside a `position: relative` element.
-
-What is good for? It's a good question :)
+What is good for? It's a good question 😄
 
 It's good if we want to put a "floating" element inside a another element.
 
@@ -64,38 +60,3 @@ We can wrap the "fixed" element with another `div` and set it as `position: abso
 
 **Imprtant!** Be careful. It's hack and the `position: relative` doesn't work as expected. For example, if we set `width: 100%` to the "fixed" element, it will get the window's width.
 
-<hr /># Trick 2
-
-Sometime you want to "disable" all the element inside a certain element. So we can easly use [`pointer-events: none`](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events#Basic_example).
-
-## The problem
-
-What if you want to "disable" only some element but not the others?
-
-## The solution
-
-You can, surprise surprise, enable the `pointer-events` even if the parent has `pointer-events: none`.
-
-Want a proof?
-
-<iframe
-  height="265"
-  scrolling="no"
-  title="pointer-event inside pointer-events"
-  src="//codepen.io/moshfeu/embed/PyZMYE/?height=265&theme-id=0&default-tab=html,result&embed-version=2"
-  frameborder="no"
-  allowtransparency="true"
-  allowfullscreen="true"
-  style="width: 100%;"
->
-  See the Pen{" "}
-  <a href="https://codepen.io/moshfeu/pen/PyZMYE/">
-    pointer-event inside pointer-events
-  </a>{" "}
-  by Mosh (<a href="https://codepen.io/moshfeu">@moshfeu</a>) on{" "}
-  <a href="https://codepen.io">CodePen</a>.
-</iframe>
-
-You can click on the `button` and on the `select` but not on the `input` or on the `radio`
-
-The question <a href="https://stackoverflow.com/a/52611251/863110" target="_blank">https://stackoverflow.com/a/52611251/863110</a>

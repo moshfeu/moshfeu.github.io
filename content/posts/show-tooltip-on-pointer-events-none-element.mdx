@@ -1,0 +1,54 @@
+---
+title: Show tooltip on pointer-events none element
+tags: ["css", "pointer-events"]
+slug: show-tooltip-on-pointer-events-none-element
+date: 2021-02-21
+---
+
+I'm a big fan of "css only" approaches ([For example](https://stackoverflow.com/a/33931219/863110)) and I'm sure I'm not alone. That's why I was so exsiting to get to know the [`pointer-events`](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events) property.
+With `prevent-default` we can "disable" non input elements such as links (even though it might not considered a good accessiblity approach)
+Before it came to our life we had to use code to stop the event when link is "disabled"
+
+``` js
+document.querySelector('a').addEventListener('click', e => {
+  if (e.target.classList.contains('disabled')) {
+    e.preventDefault();
+  }
+});
+```
+
+What about if this `a` is added by code (React for example)? pretty much nightmare.
+
+But with css
+
+``` css
+a.disabled {
+  pointer-events: none;
+}
+```
+
+Magic!
+
+### Powerfull, right? Too powerful
+
+Let's go back to our example - a "disabled" link. Usually when an element disabled, we want to show a tooltip to explain why.
+To simplify the example, I'm using the `title` property so the browser will show a native tooltip. (Once again, it's probably not accessibility compliance, but it demonstrates a use case).
+
+Here is the code
+<iframe height="148" style="width: 100%;" scrolling="no" title="ExNwKja" src="https://codepen.io/moshfeu/embed/preview/ExNwKja?height=148&amp;theme-id=light&amp;default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">See the Pen <a href='https://codepen.io/moshfeu/pen/ExNwKja' data-tomark-pass data-tomark-pass data-tomark-pass data-tomark-pass >ExNwKja</a> by Mosh
+ (<a href='https://codepen.io/moshfeu' data-tomark-pass data-tomark-pass data-tomark-pass data-tomark-pass >@moshfeu</a>) on <a href='https://codepen.io' data-tomark-pass data-tomark-pass data-tomark-pass data-tomark-pass >CodePen</a>.</iframe>
+
+Now try to hover the link to get the tooltip displayed. Nothing happening, right?
+The thing is, `pointer-events: none` behaviour is that
+
+> The element is never the target of pointer events
+
+"Never" means not only "click" events but also "hover". So when element has `pointer-events: none` the browser doesn't apply the hover state therefor, the tooltip doesn't show.
+
+### The trick
+
+I didn't write all of the Gibrish above just to give a sad ending. The trick is simple, to add the `pointer-events: none` only on `:active` state. This trick lavarages the browser behaviour so first it's applying `:active` styles and then invoking the handlers (browser and site code).
+<iframe height="148" style="width: 100%;" scrolling="no" title="dyOVMMN" src="https://codepen.io/moshfeu/embed/preview/dyOVMMN?height=148&amp;theme-id=light&amp;default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">See the Pen <a href='<a href="https://codepen.io/moshfeu/pen/dyOVMMN">https://codepen.io/moshfeu/pen/dyOVMMN\\\\\\</a>' data-tomark-pass data-tomark-pass data-tomark-pass data-tomark-pass >dyOVMMN</a> by Mosh
+ (<a href='<a href="https://codepen.io/moshfeu">https://codepen.io/moshfeu</a>' data-tomark-pass data-tomark-pass data-tomark-pass data-tomark-pass >@moshfeu</a>) on <a href='https://codepen.io' data-tomark-pass data-tomark-pass data-tomark-pass data-tomark-pass >CodePen</a>.</iframe>
+
+https://stackoverflow.com/a/31355432/863110
