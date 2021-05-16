@@ -34,6 +34,7 @@
 <url> <loc>https://moshfeu.github.io/tag/open-source-software/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/parent/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/pointer-events/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://moshfeu.github.io/tag/position-fixed/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/programming/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/questions/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/quick-tips/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -75,6 +76,8 @@
 <url> <loc>https://moshfeu.github.io/jekyll-tips/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/run-tests-after-compile-webpack/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/github-pages-tags/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://moshfeu.github.io/fixed-absolute-pointer-events/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://moshfeu.github.io/position-fixed-relative-to-parent/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/parent-with-class-scss/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/multi-select-angularjs/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/links-inside-svg/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
