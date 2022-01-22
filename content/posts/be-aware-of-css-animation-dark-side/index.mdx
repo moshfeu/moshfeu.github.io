@@ -1,0 +1,84 @@
+---
+slug: be-aware-of-css-animation-dark-side
+date: 2022-01-22
+author: "Mosh Feu"
+title: "Be aware of css animation"
+subtitle: "Photo by atiabii from Pexels"
+image: pexels-atiabii-3162989.jpeg
+images:
+  - pexels-atiabii-3162989.jpeg
+tags:
+  - css
+  - javascript
+  - css-animation
+keywords:
+  - css
+  - css-animation
+  - javascript
+---
+
+import Video from './cant-change-style.mp4';
+import {BlankLink} from '../../../src/components/mdx/link'
+
+Be aware of the "dark side" of css animations `fill-mode`.
+We usually use "fill-mode" when we want the element the browser just animated to keep the last frame's style. For example when we animate an element from left to right, we want it to stay at the right side.
+
+## How we set `fill-mode`?
+
+### CSS
+```css
+.animated {
+  animation: example-animation 500ms linear forwards /* <-- fill-mode */;
+}
+
+@keyframes example-animation {
+  from {
+    width: 50px;
+  }
+  to {
+    width: 200px;
+  }
+}
+```
+
+### Javascript
+
+```javascript
+element.animate([
+  {width: '50px'},
+  {width: '200px'},
+], {
+  duration: 500,
+  fill: 'forwards'
+})
+```
+
+## What's the catch?
+Once the animation is done, the style can't be overridden.
+
+<video controls>
+  <source src={Video} type="video/mp4" />
+</video>
+
+## What if we do want to change the style afterwards?
+It depends on how the animation initiated.
+
+### CSS animation
+Split the animation property to another class and remove the class when you want to change the style
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="&quot;Unlock&quot; css animation `fill-mode`" src="https://codepen.io/moshfeu/embed/preview/GRMezyW?default-tab=js%2Cresult&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/moshfeu/pen/GRMezyW">
+  &quot;Unlock&quot; css animation `fill-mode`</a> by Mosh (<a href="https://codepen.io/moshfeu">@moshfeu</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+### Javascript animate
+[`animate`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animate) method returns an [`Animation`](https://developer.mozilla.org/en-US/docs/Web/API/Animation) object. To reset the style, call [`Animation.cancel()`](https://developer.mozilla.org/en-US/docs/Web/API/Animation/cancel)
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="&quot;Unlock&quot; javascript animate `fill-mode`" src="https://codepen.io/moshfeu/embed/preview/JjrzzdK?default-tab=js%2Cresult&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/moshfeu/pen/JjrzzdK">
+  &quot;Unlock&quot; javascript animate `fill-mode`</a> by Mosh (<a href="https://codepen.io/moshfeu">@moshfeu</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+<BlankLink href="https://stackoverflow.com/a/70732331/863110" />
