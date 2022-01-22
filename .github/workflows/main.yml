@@ -20,12 +20,11 @@ jobs:
         with:
           node-version: '14'
       - name: Install all dependencies
-        run: yarn
+        run: echo ${GITHUB_REPOSITORY} && yarn
       - name: build
         run: yarn build
       - name: Deploy with gh-pages
         run: |
-          echo GITHUB_REPOSITORY
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           npx gh-pages -d public -b gatsby-pages -u "github-actions-bot <support+actions@github.com>"
            env:
