@@ -1,4 +1,5 @@
-// @ts-check
+/** @jsx jsx */
+import { jsx } from "theme-ui"
 import React from "react"
 import Helmet from "react-helmet"
 import { css, Styled } from "theme-ui"
@@ -7,7 +8,7 @@ import { useGAEvent } from "../../hooks/useGAEvent"
 
 import logo from "../../../content/assets/avatar.png"
 import styles from "./header.module.scss"
-import SocialNav from '../../components/social-nav'
+import SocialNav from "../../components/social-nav"
 
 export default function Header({ title }) {
   const toggleDarkMode = useGAEvent(
@@ -30,15 +31,16 @@ export default function Header({ title }) {
       </Helmet>
       <header className={styles.header}>
         <div
-          css={css({
+          sx={{
             maxWidth: `container`,
             mx: `auto`,
             px: 3,
             py: 3,
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center'
-          })}
+            display: "flex",
+            justifyContent: [null, "space-between"],
+            alignItems: [null, "center"],
+            flexDirection: ["column", "row"],
+          }}
         >
           <Title>{title}</Title>
           <SocialNav />
