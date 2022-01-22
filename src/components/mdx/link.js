@@ -30,7 +30,7 @@ export function BlankLink({ className = undefined, href, onPage = false, childre
       target={onPage ? null : "_blank"}
       rel={onPage ? null : "noopener noreferrer"}
     >
-      {children}
+      {children || href}
     </OutboundLink>
   )
 }
