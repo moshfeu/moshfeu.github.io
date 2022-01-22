@@ -10,6 +10,7 @@
 <url> <loc>https://moshfeu.github.io/tag/chrome-extension/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/corvid/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/css/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://moshfeu.github.io/tag/css-animation/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/css-3/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/electron/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/flexbox/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -57,6 +58,7 @@
 <url> <loc>https://moshfeu.github.io/tag/webkit/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/webpack/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/wix/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://moshfeu.github.io/be-aware-of-css-animation-dark-side/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/show-tooltip-on-pointer-events-none-element/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/build-your-own-analytics-tool-on-corvid-by-wix/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/how-to-build-an-html5-games-controller-with-arduino-nodejs-and-socket-io-part-2/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
