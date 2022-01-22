@@ -6,6 +6,9 @@
     "clean": "gatsby clean",
     "deploy": "gatsby build && gh-pages -d public -b gatsby-pages"
   },
+  "engines": {
+    "node": "14"
+  },
   "license": "MIT",
   "dependencies": {
     "gatsby": "^2.26.1",
