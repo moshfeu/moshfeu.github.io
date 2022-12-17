@@ -27,6 +27,7 @@
 <url> <loc>https://moshfeu.github.io/tag/jquery/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/json/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/link/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://moshfeu.github.io/tag/local-development/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/multi-select/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/nodejs/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/notifications/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -43,6 +44,7 @@
 <url> <loc>https://moshfeu.github.io/tag/scss/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/select-2/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/selector/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://moshfeu.github.io/tag/serve/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/serverless/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/socketio/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/stackoverflow/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -58,6 +60,7 @@
 <url> <loc>https://moshfeu.github.io/tag/webkit/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/webpack/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/wix/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://moshfeu.github.io/how-to-run-serve-with-https/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/be-aware-of-css-animation-dark-side/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/show-tooltip-on-pointer-events-none-element/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/build-your-own-analytics-tool-on-corvid-by-wix/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
