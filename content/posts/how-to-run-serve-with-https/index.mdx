@@ -24,11 +24,11 @@ With `serve` you can run your app in production mode locally.
 
 <img src="react-build-serve.png" alt="react build output mention serve" />
 
-## But why if you need to run your app under HTTPS?
+## Why you need to run your app under HTTPS?
 
-There are some reasons why you might want to run your web application under HTTPS. For instance, if an sdk you use requires to run under HTTPS, or if you want to test your app on mobile devices, you will need to run it under HTTPS.
+There are some reasons why you might want to run your web application under HTTPS. For instance, if an sdk you use requires to run under HTTPS, or if you use a browser feature that requires HTTPS.
 
-I needed to run my app under HTTPS because my app is PWA which requires to run ServiceWorker. Service workers only work over HTTPS <sub>[1]</sub>.
+I needed to run my app under HTTPS because my app is PWA (Progressive Web App) which requires to run `ServiceWorker`. Service workers only work over HTTPS <sub>[1]</sub>.
 
 You are probably here to know how to run serve under https so instead of bumbling around, here are the steps:
 
