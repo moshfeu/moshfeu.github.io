@@ -4,6 +4,7 @@
 <url> <loc>https://moshfeu.github.io/tag/ajv/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/angularjs/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/arduino/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://moshfeu.github.io/tag/assets/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/bot/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/chat-bot/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/chrome/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -14,6 +15,7 @@
 <url> <loc>https://moshfeu.github.io/tag/css-3/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/electron/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/flexbox/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://moshfeu.github.io/tag/frontend/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/games-consoles/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/github-pages/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/how-to/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -38,6 +40,7 @@
 <url> <loc>https://moshfeu.github.io/tag/pointer-events/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/position-fixed/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/programming/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://moshfeu.github.io/tag/pwa/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/questions/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/quick-tips/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/scrolling/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -54,12 +57,14 @@
 <url> <loc>https://moshfeu.github.io/tag/tests/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/tips/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/validation/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://moshfeu.github.io/tag/vite/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/vscode/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/vscode-extension/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/web-development/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/webkit/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/webpack/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/tag/wix/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://moshfeu.github.io/vite-pwa-icon-padding-fix/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/how-to-run-serve-with-https/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/be-aware-of-css-animation-dark-side/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://moshfeu.github.io/show-tooltip-on-pointer-events-none-element/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
