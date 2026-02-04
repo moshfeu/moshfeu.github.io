@@ -35,6 +35,7 @@ export const pageQuery = graphql`
         slug
         excerpt
         date(formatString: "MMMM DD, YYYY")
+        tags
       }
       totalCount,
     },

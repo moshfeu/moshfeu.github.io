@@ -30,6 +30,7 @@ export const listQuery = graphql`
         slug
         excerpt
         date(formatString: "MMMM Do, YYYY")
+        tags
       }
     }
     site {
