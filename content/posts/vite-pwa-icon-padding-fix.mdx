@@ -1,0 +1,39 @@
+---
+title: Fixing PWA Icon Padding in Vite Projects
+tags: ["vite", "pwa", "assets", "frontend"]
+slug: vite-pwa-icon-padding-fix
+date: 2025-09-26
+---
+
+## Background
+
+The Vite PWA plugin simplifies adding Progressive Web App features to Vite projects, such as offline support and installable web apps.
+It uses the PWA Assets Generator to automatically create icons and images required for PWAs, ensuring your app meets platform requirements. The assets generator handles different icon types, including maskable icons, and provides configuration options to customize their appearance.
+<a href="https://web.dev/articles/maskable-icon?utm_source=moshfeu.github.io" target="_blank" rel="noopener noreferrer">Maskable icons</a> are icons that can be cropped into different shapes (like circles or squares) without losing important parts of the image. The padding ensures that important parts of the icon aren't cut off when displayed in various contexts.
+
+## The Problem
+
+When generating PWA icons, you might notice too much padding around the maskable icons. The padding is for a good reason but sometimes it's too much and make your app icon look smaller or misaligned on devices.
+
+## The Solution
+
+The fix is simple: adjust the `padding` option in your PWA assets generator config. In my project, I set the `padding` for maskable icons to `0.05` (5%) in `pwa-assets.config.ts`:
+
+```ts
+import { defineConfig, minimal2023Preset } from '@vite-pwa/assets-generator/config';
+
+export default defineConfig({
+  preset: {
+    ...minimal2023Preset,
+    maskable: {
+      ...minimal2023Preset.maskable,
+      padding: 0.05
+    }
+  }
+});
+```
+
+This change reduces the extra space around the icon, making it look much better when installed as a PWA.
+
+No need to change anything in `vite.config.ts` because the assets generator automatically picks up this config.
+But make sure the maskable icon has `sizes` defined in `vite.config.ts` otherwise the browser will ignore it
