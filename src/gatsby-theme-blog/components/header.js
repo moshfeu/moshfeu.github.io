@@ -50,10 +50,7 @@ export default function Header({ title }) {
           className={styles.toggleDark}
           onClick={toggleDarkMode}
         >
-          {typeof document !== "undefined" &&
-            document.body.classList.contains("dark-mode")
-            ? "☀"
-            : "☾"}
+          <span></span>
         </button>
       </header>
     </>
