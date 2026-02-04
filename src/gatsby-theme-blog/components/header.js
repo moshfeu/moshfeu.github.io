@@ -2,12 +2,12 @@
 import { jsx } from "theme-ui"
 import React from "react"
 import Helmet from "react-helmet"
-import { css, Styled } from "theme-ui"
+import { css, Box } from "theme-ui"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import { useGAEvent } from "../../hooks/useGAEvent"
 
 import logo from "../../../content/assets/avatar.png"
-import styles from "./header.module.scss"
+import * as styles from "./header.module.scss"
 import SocialNav from "../../components/social-nav"
 
 export default function Header({ title }) {
@@ -50,7 +50,10 @@ export default function Header({ title }) {
           className={styles.toggleDark}
           onClick={toggleDarkMode}
         >
-          <span></span>
+          {typeof document !== "undefined" &&
+            document.body.classList.contains("dark-mode")
+            ? "☀"
+            : "☾"}
         </button>
       </header>
     </>
@@ -58,7 +61,7 @@ export default function Header({ title }) {
 }
 
 const Title = ({ children }) => (
-  <Styled.div
+  <Box
     css={css({
       my: 0,
       fontSize: 4,
@@ -68,7 +71,7 @@ const Title = ({ children }) => (
       <Avatar />
       {children}
     </Link>
-  </Styled.div>
+  </Box>
 )
 
 const Avatar = () => {

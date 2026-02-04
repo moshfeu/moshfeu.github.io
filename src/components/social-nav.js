@@ -2,7 +2,7 @@
 import React, { useCallback, useEffect, useState } from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import { BlankLink } from "./mdx/link"
-import Styles from "./social-nav.module.scss"
+import * as Styles from "./social-nav.module.scss"
 
 export default function SocialNav() {
   const {

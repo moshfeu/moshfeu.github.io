@@ -2,7 +2,7 @@
 import React from "react"
 import { Link as GatsbyLink } from "gatsby"
 import { OutboundLink } from "gatsby-plugin-google-gtag"
-import Styles from "./link.module.scss"
+import * as Styles from "./link.module.scss"
 
 export default function Link({ children, href }) {
   if (href.startsWith("/")) {

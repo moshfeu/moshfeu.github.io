@@ -38,6 +38,12 @@ module.exports = {
       resolve: "gatsby-plugin-sass",
       options: {
         implementation: require("sass"),
+        cssLoaderOptions: {
+          modules: {
+            auto: /\.module\.scss$/,
+            exportLocalsConvention: "camelCaseOnly",
+          },
+        },
       },
     },
     {

@@ -1,18 +1,16 @@
 import React from "react"
-import { Badge, Styled } from "theme-ui"
+import { Badge, Box } from "theme-ui"
 import { Link } from "gatsby"
-
-const Container = Styled.div
 
 const Tags = ({ tags }) => {
   return (
-    <Container>
+    <Box>
       {tags?.map((tag, i) => (
         <Link key={tag} to={`/tag/${tag}`}>
           <Badge ml={Math.min(i, 1)}>{tag}</Badge>
         </Link>
       ))}
-    </Container>
+    </Box>
   )
 }
 

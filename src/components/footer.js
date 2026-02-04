@@ -2,7 +2,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import { css, Flex } from "theme-ui"
-import Styles from "./footer.module.scss"
+import * as Styles from "./footer.module.scss"
 
 const Footer = ({ previous, next }) => {
   return (
@@ -33,7 +33,6 @@ const Footer = ({ previous, next }) => {
           </li>
         </Flex>
       )}
-      © {new Date().getFullYear()} - Moshe Feuchtwander
     </footer>
   )
 }

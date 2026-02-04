@@ -1,8 +1,7 @@
 import React from "react"
 import Highlight, { defaultProps } from "prism-react-renderer"
 import theme from "prism-react-renderer/themes/nightOwl"
-
-import Styles from "./code.module.scss"
+import * as Styles from "./code.module.scss"
 
 const RE = /{([\d,-]+)}/
 
