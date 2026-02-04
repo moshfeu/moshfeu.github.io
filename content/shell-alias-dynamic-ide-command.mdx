@@ -1,0 +1,44 @@
+---
+title: Dynamic Shell Alias for IDE Detection
+tags: ["shell", "zsh", "terminal", "productivity"]
+slug: shell-alias-dynamic-ide-command
+date: 2026-02-04
+---
+
+## The Problem
+
+When using multiple IDEs (like VS Code and Cursor), shell aliases that open files in an editor can become inconvenient. An alias that runs `code` will always open VS Code, even when working in a terminal launched from Cursor.
+
+## The Solution
+
+We can create a dynamic alias that detects which IDE launched the terminal by checking the parent process, then opens files in the correct editor.
+
+For a specific file, the alias looks like this:
+
+```bash
+alias edit-alias='[[ "$(ps -o comm= -p $PPID)" == *"Cursor"* ]] && cursor ~/.oh-my-zsh/custom/alias.zsh || code ~/.oh-my-zsh/custom/alias.zsh'
+```
+
+The `ps -o comm= -p $PPID` command checks the terminal's parent process name. If it contains "Cursor", it uses the `cursor` command, otherwise it defaults to `code`.
+
+## A More Flexible Approach
+
+Instead of hard-coding file paths in each alias, we can create a reusable function:
+
+```bash
+edit() {
+  if [[ "$(ps -o comm= -p $PPID)" == *"Cursor"* ]]; then
+    cursor "$1"
+  else
+    code "$1"
+  fi
+}
+
+alias edit-alias='edit ~/.oh-my-zsh/custom/alias.zsh'
+```
+
+Now the `edit` function can be used directly in the terminal with any file path:
+
+```bash
+edit path/to/your/file
+```
