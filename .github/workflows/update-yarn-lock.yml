@@ -2,6 +2,10 @@ name: Update yarn.lock
 
 on:
   workflow_dispatch:  # Allows manual trigger from GitHub UI
+  pull_request:
+    paths:
+      - 'package.json'
+      - 'yarn.lock'
 
 jobs:
   update-lockfile:
@@ -15,19 +19,51 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Check if update is needed
+        id: check
+        run: |
+          if [ ! -f yarn.lock ]; then
+            echo "needs_update=true" >> $GITHUB_OUTPUT
+            echo "reason=yarn.lock not found" >> $GITHUB_OUTPUT
+          elif grep -E "resolved \"https?://(?!registry\.(yarnpkg\.com|npmjs\.org))" yarn.lock; then
+            echo "needs_update=true" >> $GITHUB_OUTPUT
+            echo "reason=private registry detected" >> $GITHUB_OUTPUT
+          else
+            echo "needs_update=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Setup Node.js
+        if: steps.check.outputs.needs_update == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: 'yarn'
 
       - name: Remove old yarn.lock
+        if: steps.check.outputs.needs_update == 'true'
         run: rm -f yarn.lock
 
       - name: Install dependencies and generate yarn.lock
+        if: steps.check.outputs.needs_update == 'true'
         run: yarn
 
+      - name: Install dependencies and generate yarn.lock
+        if: steps.check.outputs.needs_update == 'true'
+        run: yarn
+
+      - name: Commit to current PR
+        if: steps.check.outputs.needs_update == 'true' && github.event_name == 'pull_request'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add yarn.lock
+          git commit -m "chore: update yarn.lock
+
+          Reason: ${{ steps.check.outputs.reason }}"
+          git push
+
       - name: Create Pull Request
+        if: steps.check.outputs.needs_update == 'true' && github.event_name == 'workflow_dispatch'
         uses: peter-evans/create-pull-request@v6
         with:
           commit-message: 'chore: update yarn.lock'
@@ -36,6 +72,8 @@ jobs:
           title: 'Update yarn.lock'
           body: |
             Automated update of yarn.lock file generated from GitHub Actions.
+
+            **Reason:** ${{ steps.check.outputs.reason }}
 
             This removes any private registry references and uses the public npm registry.
           labels: dependencies
