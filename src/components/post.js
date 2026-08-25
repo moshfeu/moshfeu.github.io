@@ -96,6 +96,7 @@ export const query = graphql`
         date(formatString: "MMMM DD, YYYY")
         image {
           childImageSharp {
+            gatsbyImageData(layout: CONSTRAINED, width: 1200)
             fluid(maxWidth: $maxWidth) {
               ...GatsbyImageSharpFluid
               src
